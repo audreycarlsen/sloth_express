@@ -8,7 +8,7 @@ describe Product do
 
     it "must have a name" do
       product1.name = nil
-      expect(product1).to_not be_valid
+      expect(product1).to be_invalid
     end
 
     it "must have a unique name" do
@@ -22,11 +22,25 @@ describe Product do
     end
 
     it "must have a numerical price" do
-      expect(product1.price).to be_kind_of(Fixnum)
+      expect(product1).to be_valid
+    end
+
+    it "cannot have a price that is a letter" do
+      product1.price = 'a'
+      expect(product1).to be_invalid
+    end
+
+    it "cannot have a price that is a blank string" do
+      product1.price = ' '
+      expect(product1).to be_invalid
     end
 
     it "must have a price that is greater than 0" do
-      product1.price = 0
+      expect(product1).to be_valid
+    end
+
+    it "cannot have a price that is less than 0" do
+      product1.price = -1
       expect(product1).to be_invalid
     end
 
@@ -36,7 +50,6 @@ describe Product do
     end
   end
 end
-
 
 
 # describe Product do
