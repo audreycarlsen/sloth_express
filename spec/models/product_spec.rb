@@ -2,29 +2,31 @@ require 'spec_helper'
 
 describe Product do
 
-describe 'validations' do
-  let(:product1){Product.new(name:"Panda", price:4.40,user_id:1)}
-  let(:product2){Product.new(name:"Sloth", price:44.40, user_id:2)}
+  describe 'validations' do
+    let(:product1){Product.new(name:"Panda", price:4.40,user_id:1)}
+    let(:product2){Product.new(name:"Sloth", price:44.40, user_id:2)}
 
-  it "must have a name" do
-    product1.name = nil
-    expect(product1).to_not be_valid
-  end
+    it "must have a name" do
+      product1.name = nil
+      expect(product1).to_not be_valid
+    end
 
-  it "must have a unique name" do
-    product2.name = "Panda"
-    expect(product2).to_be invalid
-  end
+    it "must have a unique name" do
+      product2.name = "Panda"
+      expect(product2).to_be invalid
+    end
 
-  it "must have a price" do
-    product1.price = nil
-    expect(product1).to_be invalid
-  end
+    it "must have a price" do
+      product1.price = nil
+      expect(product1).to_be invalid
+    end
 
-  it "must have a numerical price" do
-    expect(product1.price).to_be kind_of(Fixnum)
+    it "must have a numerical price" do
+      expect(product1.price).to_be kind_of(Fixnum)
+    end
   end
 end
+
 
 
 # describe Product do
