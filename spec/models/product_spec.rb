@@ -13,16 +13,26 @@ describe Product do
 
     it "must have a unique name" do
       product2.name = "Panda"
-      expect(product2).to_be invalid
+      expect(product2).to be_invalid
     end
 
     it "must have a price" do
       product1.price = nil
-      expect(product1).to_be invalid
+      expect(product1).to be_invalid
     end
 
     it "must have a numerical price" do
-      expect(product1.price).to_be kind_of(Fixnum)
+      expect(product1.price).to be_kind_of(Fixnum)
+    end
+
+    it "must have a price that is greater than 0" do
+      product1.price = 0
+      expect(product1).to be_invalid
+    end
+
+    it "must belong to a user" do
+      product1.user_id = nil
+      expect(product1).to be_invalid
     end
   end
 end
