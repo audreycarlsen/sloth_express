@@ -1,4 +1,8 @@
 SlothExpress::Application.routes.draw do
+  get "categories/index"
+  get "categories/edit"
+  get "categories/show"
+  get "categories/new"
   get "products/index"
   get "products/new"
   get "products/edit"
