@@ -1,0 +1,15 @@
+<h1>Users#create</h1>
+<p>Find me in app/views/users/create.html.erb</p>
+
+<%= form_tag do %>
+	<%= label_tag :name, 'My name' %>
+	<%= text_field_tag :name, :id='name' %>
+	<%= label_tag :username, 'My username' %>
+	<%= text_field_tag :username, :id='username' %>
+	<%= label_tag :email, 'My email address' %>
+	<%= text_field_tag :email, :id='email' %>
+	<%= label_tag :password, 'Password' %>
+	<%= text_field_tag :password, :id='password' %>
+	<%= submit_tag %>
+<% end %>
+
