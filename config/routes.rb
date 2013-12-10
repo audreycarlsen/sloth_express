@@ -1,12 +1,6 @@
 SlothExpress::Application.routes.draw do
-  get "categories/index"
-  get "categories/edit"
-  get "categories/show"
-  get "categories/new"
-  get "products/index"
-  get "products/new"
-  get "products/edit"
-  get "products/show"
+  resources :categories
+  resources :products
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
