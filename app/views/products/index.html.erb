@@ -6,10 +6,12 @@
     <% @products.each do |product| %>
       <tr>
         <td class='row_title'><%= link_to product.name, product %></td>
-        <td>[<%= link_to 'Edit', edit_product_path(recipe) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <td>[<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
       </tr>
       <tr>
         <td><%= product.description %></td>
+      </tr>
+      <tr>
         <td><%= product.price %></td>
       </tr>
     <% end %>
