@@ -19,11 +19,9 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    
-    if !params[:products][:categories].nil?
-      category_products
-    end
-    
+  
+    category_products
+  
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -40,6 +38,8 @@ class ProductsController < ApplicationController
   end
 
   def update
+    category_products
+
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
