@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update(product_params)
-        category_products
+        assign_categories_to_products
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
       else
         format.html { render action: 'edit' }
@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
   end
 
 # Creates an array of categories for a product
-  def category_products
+  def assign_categories_to_products
     params[:product][:categories].each do |category_id|
       next if category_id.to_i == 0
       @product.categories << Category.find(category_id.to_i)
