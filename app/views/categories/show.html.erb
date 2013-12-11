@@ -2,13 +2,16 @@
   <strong>Name:</strong>
   <%= @category.name %>
 </p>
+<%= @category.inspect %>
+<%= @category.products.inspect %>
+
 
 <strong>Products:</strong>
   <ul>
     <% @category.products.each do |product| %>
       <li>   
         <%= link_to "#{product.name}", product_path(product) %>
-        <%= button_to "delete", remove_product_path(@category.id, product.id), :method => :delete %>
+        
       </li>
     <%end%>
   </ul>

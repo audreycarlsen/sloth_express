@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    products_list
   end
 
   def edit
@@ -20,9 +19,15 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if !params[:categories][:products].nil?
-      category_products
+    if @category.save
+      redirect_to category_path(@category)
+    else
+      render :new
     end
+  end
+
+  def update
+    @category = Category.new(category_params)
 
     if @category.save
       redirect_to category_path(@category)
@@ -40,8 +45,7 @@ class CategoriesController < ApplicationController
   def category_products
     params[:category][:products].each do |product_id|
       next if product_id.to_i == 0
-      product = Product.find(product_id.to_i)
-      @category.products << product
+      @category.products << Product.find(product_id.to_i)
     end
   end
 
