@@ -27,13 +27,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.new(category_params)
+    @category = Category.find(params[:id])
 
-    if @category.save
-      
+    if @category.update(category_params)
+
       redirect_to category_path(@category)
     else
-      render :new
+      render :edit
     end
   end
   
