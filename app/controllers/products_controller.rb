@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    categories_list
   end
 
   def edit
+    categories_list
   end
 
   def show
@@ -17,6 +19,10 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    
+    if !params[:products][:categories].nil?
+      category_products
+    end
     
     respond_to do |format|
       if @product.save
@@ -50,12 +56,25 @@ class ProductsController < ApplicationController
     end
   end
 
+# Creates an array of all categories
+  def categories_list
+    @categories = Category.all.collect { |p| [p.name, p.id] }
+  end
+
+# Creates an array of categories for a product
+  def category_products
+    params[:product][:categories].each do |category_id|
+      next if category_id.to_i == 0
+      @product.categories << Category.find(category_id.to_i)
+    end
+  end
+
   private
   def set_product
     @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :photo, :stock)
+    params.require(:product).permit(:name, :description, :price, :photo, :stock, :categories => {})
   end
 end

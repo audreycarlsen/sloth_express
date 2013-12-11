@@ -7,9 +7,11 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    products_list
   end
 
   def edit
+    products_list
   end
 
   def show
@@ -17,6 +19,11 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+
+    if !params[:categories][:products].nil?
+      category_products
+    end
+
     if @category.save
       redirect_to category_path(@category)
     else
@@ -26,7 +33,7 @@ class CategoriesController < ApplicationController
   
   # Creates an array of all products
   def products_list
-   @products = Product.all.collect { |p| [ p.name, p.id ]}
+    @products = Product.all.collect { |p| [ p.name, p.id ]}
   end
 
   # Creates an array of products in a category
@@ -44,7 +51,7 @@ private
   end
 
   def category_params
-    params.require(:category).permit(:name, :products)
+    params.require(:category).permit(:name, :products => {})
   end
 
   
