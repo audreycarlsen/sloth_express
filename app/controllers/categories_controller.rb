@@ -25,12 +25,25 @@ class CategoriesController < ApplicationController
   end
 
 private
-def set_category
-  @category = Category.find(params[:id])
-end
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-def category_params
-  params.require(:category).permit(:name, :products)
-end
+  def category_params
+    params.require(:category).permit(:name, :products)
+  end
 
+  # Creates an array of all products
+  def products_list
+   @products = Product.all.collect { |p| [ p.name, p.id ]}
+  end
+
+  # Creates an array of products in a category
+  def category_products
+    params[:category][:products].each do |product_id|
+      next if product_id.to_i == 0
+      product = Product.find(product_id.to_i)
+      @category.products << product
+    end
+  end
 end
