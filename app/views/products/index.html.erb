@@ -1,2 +1,21 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Products</h1>
+
+<table>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td class='row_title'><%= link_to product.name, product %></td>
+        <td>[<%= link_to 'Edit', edit_product_path(recipe) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+      <tr>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create New Product!', new_product_path %>

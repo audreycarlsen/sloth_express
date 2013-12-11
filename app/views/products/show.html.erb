@@ -1,2 +1,29 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+<p>
+  <strong>Process:</strong>
+  <%= @recipe.process %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @price.process %>
+</p>
+<p>
+  <strong>Photo URL:</strong>
+  <%= @photo.process %>
+</p>
+<p>
+  <strong>Stock:</strong>
+  <%= @stock.process %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
