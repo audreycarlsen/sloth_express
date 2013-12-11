@@ -52,6 +52,8 @@ describe Product do
 end
 
 
+
+
 # describe Product do
 
 #   describe 'validations' do
