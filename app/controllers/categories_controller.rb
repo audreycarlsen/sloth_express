@@ -23,16 +23,7 @@ class CategoriesController < ApplicationController
       render :new
     end
   end
-
-private
-  def set_category
-    @category = Category.find(params[:id])
-  end
-
-  def category_params
-    params.require(:category).permit(:name, :products)
-  end
-
+  
   # Creates an array of all products
   def products_list
    @products = Product.all.collect { |p| [ p.name, p.id ]}
@@ -46,4 +37,15 @@ private
       @category.products << product
     end
   end
+
+private
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  def category_params
+    params.require(:category).permit(:name, :products)
+  end
+
+  
 end
