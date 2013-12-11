@@ -30,6 +30,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
+      
       redirect_to category_path(@category)
     else
       render :new
