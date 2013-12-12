@@ -54,5 +54,12 @@ describe User do
         expect(user).to_not be_valid
       end
 
+      it "must have password" do
+        user.password = nil
+        user.save
+        user.password_confirmation = nil
+        expect(user).to_not be_valid
+      end
+
   end
 end
