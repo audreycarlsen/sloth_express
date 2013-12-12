@@ -3,15 +3,17 @@ require 'spec_helper'
 describe Product do
 
   describe 'validations' do
-    let(:product1){Product.new(name:"Panda", price:4.40,user_id:1)}
+    let(:product1){Product.new(name:"Panda", price:4.40, user_id:1)}
     let(:product2){Product.new(name:"Sloth", price:44.40, user_id:2)}
 
     it "must have a name" do
       product1.name = nil
       expect(product1).to be_invalid
+      # expect(product1.errors[:name]).to include("can't be blank")
     end
 
     it "must have a unique name" do
+      product1.save
       product2.name = "Panda"
       expect(product2).to be_invalid
     end
