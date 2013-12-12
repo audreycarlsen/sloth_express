@@ -43,6 +43,7 @@ class ProductsController < ApplicationController
         assign_categories_to_products
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
       else
+        categories_list
         format.html { render action: 'edit' }
       end
     end
