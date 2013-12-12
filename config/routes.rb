@@ -1,7 +1,13 @@
 SlothExpress::Application.routes.draw do
+
   resources :categories
   resources :products
   
+
+  get "sessions/create"
+  get "sessions/destroy"
+ resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
