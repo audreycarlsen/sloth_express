@@ -22,8 +22,17 @@
     <%= msg %>
 <% end %>
 
-
-<%= yield %>
+<div>
+  <div id="nav">
+    <ul>
+      <li><a href="/users">My Profile</a></li>
+      <li><a href="/products">Products</a></li>
+      <li><a href="/categories">Categories</a></li>
+  </div>
+  <div>
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
