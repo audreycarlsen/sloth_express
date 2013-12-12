@@ -12,6 +12,7 @@ describe Category do
     end
 
     it "must have a unique name" do
+      category1.save
       category2.name = "Animals"
       expect(category2).to be_invalid
     end

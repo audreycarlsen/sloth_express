@@ -1,8 +1,7 @@
 <%= form_for(@product) do |f| %>
   <% if @product.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_messages">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
       <ul>
       <% @product.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -24,7 +23,7 @@
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
-  <br><br>
+  <br>
   <div class="field">
     <%= f.label :photo, "Photo URL" %><br>
     <%= f.text_field :photo %>
@@ -34,9 +33,10 @@
     <%= f.label :stock %><br>
     <%= f.text_field :stock %>
   </div>
+  <br>
   <div class="field">
     <%= f.label :categories %><br>
-    <%= f.select(:categories, @categories, {}, {:multiple => true}) %>
+    <%= f.select(:categories, @categories, {selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   </div>
   <br>
   <div class="actions">
