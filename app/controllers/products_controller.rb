@@ -20,10 +20,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
   
-    category_products
-  
     respond_to do |format|
       if @product.save
+        assign_categories_to_products
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
       else
         format.html { render action: 'new' }
