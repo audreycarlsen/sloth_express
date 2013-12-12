@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  # force_ssl
+
   def index
     @users = User.all
   end
@@ -28,6 +32,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User info was successfully updated'}
+        format.json { render action: 'show', status: :created, location: @user}
+      else
+        format.html { render action: 'edit'}
+        format.json { rendoer json: @user.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def destroy
