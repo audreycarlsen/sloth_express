@@ -61,7 +61,6 @@ class ProductsController < ApplicationController
     @categories = Category.all.collect { |p| [p.name, p.id] }
   end
 
-# Creates an array of categories for a product
   def assign_categories_to_products
     params[:product][:categories].each do |category_id|
       next if category_id.to_i == 0
