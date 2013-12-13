@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:show, :edit, :update, :destroy]
+  before_action :check_login, only:[:new, :edit, :create, :update, :destroy]
 
   def index
     @products = Product.all
@@ -69,6 +70,12 @@ class ProductsController < ApplicationController
   end
 
   private
+  def check_login
+    if session[:user_id].nil?
+      redirect_to new_session_path, :notice => "Please log in or create an account."
+    end
+  end
+
   def set_product
     @product = Product.find(params[:id])
   end
