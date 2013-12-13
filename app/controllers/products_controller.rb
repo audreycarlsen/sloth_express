@@ -18,8 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-  
     category_products
   
     respond_to do |format|
@@ -74,6 +72,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :categories => {})
+    params.require(:product).permit(:name, :description, :review, :price, :photo, :stock, :categories => {})
   end
 end

@@ -1,7 +1,11 @@
 SlothExpress::Application.routes.draw do
 
   resources :categories
-  resources :products
+  
+  resources :products do
+    resources :reviews
+  end
+
   resources :users
   resources :sessions
 
