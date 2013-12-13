@@ -1,5 +1,8 @@
 SlothExpress::Application.routes.draw do
 
+  get "orders/show"
+  get "orders/index"
+  get "orders/edit"
   root 'welcome#index'
   
   resources :categories
