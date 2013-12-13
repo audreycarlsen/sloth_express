@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     end
 
     # if @product.save
-    #   redirect_to product_path(@product)
+    #   redirect_to product_path(@product), :notice => 'Product was successfully created.'
     # else
     #   render :new
     # end
