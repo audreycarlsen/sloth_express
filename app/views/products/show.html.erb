@@ -62,11 +62,12 @@
 
 
 
-<%   @product.reviews.each do |review| %>
+  <% @product.reviews.each do |review| %>
 
-  <p><strong>Title: </strong><%= review.title %></p>
-  <p><strong>Author: </strong><%= review.author %></p>
-  <p><strong>Content: </strong><%= review.content %></p>
-  <p><strong>Rating: </strong><%= review.rating %></p>
-  <hr>
-<% end %>
+    <p><strong>Title: </strong><%= review.title %></p>
+    <p><strong>Author: </strong><%= review.author %></p>
+    <p><strong>Content: </strong><%= review.content %></p>
+    <p><strong>Rating: </strong><%= review.rating %></p>
+    <hr>
+  <% end %>
+
