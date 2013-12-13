@@ -33,6 +33,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'debugger'
 	gem 'rspec-rails'
 	gem 'guard-rspec', require: false
 end

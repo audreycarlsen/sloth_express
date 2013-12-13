@@ -3,7 +3,11 @@ SlothExpress::Application.routes.draw do
   root 'welcome#index'
   
   resources :categories
-  resources :products
+  
+  resources :products do
+    resources :reviews
+  end
+
   resources :users
   resources :sessions
 
