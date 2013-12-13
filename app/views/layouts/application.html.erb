@@ -17,11 +17,6 @@
   <% end %>
 </div>
 
-<% flash.each do |name, msg| %>
-  <div class="flash_<%= name %>">
-    <%= msg %>
-<% end %>
-
 <div>
   <div id="nav">
     <p><a href="/users">My Profile</a><br>
@@ -29,6 +24,13 @@
     <a href="/categories">Categories</a>
     </p>
   </div>
+
+  <% flash.each do |name, msg| %>
+    <div class="flash_<%= name %>">
+      <%= msg %>
+    </div>
+  <% end %>
+
   <div>
     <%= yield %>
   </div>
