@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211231209) do
+ActiveRecord::Schema.define(version: 20131213215029) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.string   "status"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,10 +45,10 @@ ActiveRecord::Schema.define(version: 20131211231209) do
   end
 
   create_table "reviews", force: true do |t|
-    t.integer  "stars"
     t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
+    t.string   "author"
+    t.text     "content"
+    t.integer  "rating"
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"

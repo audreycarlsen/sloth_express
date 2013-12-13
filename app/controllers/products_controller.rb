@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:show, :edit, :update, :destroy]
+  before_action :check_login, only:[:new, :edit, :create, :update, :destroy]
 
   def index
     @products = Product.all
@@ -19,31 +20,31 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-  
-    category_products
-  
+
     respond_to do |format|
       if @product.save
+        assign_categories_to_products
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
       else
+        categories_list
         format.html { render action: 'new' }
       end
     end
 
     # if @product.save
-    #   redirect_to product_path(@product)
+    #   redirect_to product_path(@product), :notice => 'Product was successfully created.'
     # else
     #   render :new
     # end
   end
 
   def update
-
     respond_to do |format|
       if @product.update(product_params)
         assign_categories_to_products
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
       else
+        categories_list
         format.html { render action: 'edit' }
       end
     end
@@ -69,11 +70,17 @@ class ProductsController < ApplicationController
   end
 
   private
+  def check_login
+    if session[:user_id].nil?
+      redirect_to new_session_path, :notice => "Please log in or create an account."
+    end
+  end
+
   def set_product
     @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :photo, :stock, :categories => {})
+    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :categories => {})
   end
 end

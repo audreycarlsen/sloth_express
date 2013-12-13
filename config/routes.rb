@@ -1,5 +1,7 @@
 SlothExpress::Application.routes.draw do
 
+  root 'welcome#index'
+  
   resources :categories
   resources :products
   resources :users

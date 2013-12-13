@@ -21,15 +21,22 @@
   <%= @product.stock %>
 </p>
 
-<%= @product.categories.inspect %>
-
 <p>
 <strong>Categories:</strong><br>
   <% @product.categories.each do |category| %>
-    - <%= category.name %><br>
+    <ul><li><%= link_to "#{category.name}", category_path(category) %></li></ul>
   <% end %>
 </p>
 
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+<% @product.reviews.each do |review| %>
+
+  <p><strong>Title: </strong><%= review.title %></p>
+  <p><strong>Author: </strong><%= review.author %></p>
+  <p><strong>Content: </strong><%= review.content %></p>
+  <p><strong>Rating: </strong><%= review.rating %></p>
+  <hr>
+<% end %>
