@@ -18,4 +18,12 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to products_path, :notice => "Bye, Sloth Cadet, hope to see you soon!"
   end
+
+  def create_order
+    session[:order_id] = order.id
+  end
+
+  def destroy_order
+    session[:order_id] = nil
+  end
 end

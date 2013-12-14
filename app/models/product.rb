@@ -5,7 +5,8 @@ class Product < ActiveRecord::Base
 
   has_many :product_categories
   has_many :categories, through: :product_categories
-  has_many :orders, through: :order_item
+  has_many :order_items
+  has_many :orders, through: :order_items
   has_many :reviews
   belongs_to :user
 end
