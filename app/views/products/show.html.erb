@@ -34,7 +34,7 @@
 
 
 
-<%= form_for([@product, @product.reviews.build]) do |f| %>
+<%= form_for([@product, Review.new]) do |f| %>
     <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title %>
