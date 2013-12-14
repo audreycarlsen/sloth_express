@@ -67,9 +67,9 @@
     <div class="review">
       <strong><%= review.title %></strong> </br>
       <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> </br>
-      <%= review.content %>
+      <%= review.content %> </br>
       <%= review.rating.times do %>
-      <%= image_tag "sloth_star.jpeg",size:"40x40" %>
+      <%= image_tag "sloth_star.jpeg",size:"25x25" %>
       <% end %>
    
     <hr>
