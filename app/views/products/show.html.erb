@@ -64,10 +64,15 @@
 
   <% @product.reviews.each do |review| %>
 
-    <p><strong>Title: </strong><%= review.title %></p>
-    <p><strong>Author: </strong><%= review.author %></p>
-    <p><strong>Content: </strong><%= review.content %></p>
-    <p><strong>Rating: </strong><%= review.rating %></p>
+    <div class="review">
+      <strong><%= review.title %></strong> </br>
+      <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> </br>
+      <%= review.content %>
+      <%= review.rating.times do %>
+      <%= image_tag "sloth_star.jpeg",size:"40x40" %>
+      <% end %>
+   
     <hr>
   <% end %>
+   </div>
 
