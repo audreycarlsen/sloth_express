@@ -51,7 +51,7 @@
     </div>
     <div class="field">
       <%= f.label :rating %><br>
-      <%= f.number_field :rating %>
+      <%= f.select( :rating, options_for_select(1..5) ) %>
     </div>
 
     <br>
