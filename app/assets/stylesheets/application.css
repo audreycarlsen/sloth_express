@@ -1,4 +1,30 @@
+body {
+  font-family: Helvetica;
+}
 
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+#user_nav {
+  text-align: right;
+  font-size: 12px;
+}
+
+#header {
+  font-family: Apple Casual, Helvetica, sans-serif;
+  font-size: 30px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
