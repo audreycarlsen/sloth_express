@@ -28,7 +28,7 @@
 
 <div>
   <div id="nav">
-    <a href="/users">My Profile</a> <a href="/products">Products</a> <a href="/categories">Categories</a>
+    <%= link_to "My Account", user_path(session[:user_id]) %> <a href="/products">Products</a> <a href="/categories">Categories</a>
   </div>
 
   <% flash.each do |name, msg| %>

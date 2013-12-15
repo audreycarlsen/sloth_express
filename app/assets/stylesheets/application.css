@@ -39,7 +39,7 @@ a:hover {
   font-size: 15px;
 }
 
-#product_title {
+.title {
   font-weight: bold;
   font-size: 20px;
 }
