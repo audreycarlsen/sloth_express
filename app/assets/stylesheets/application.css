@@ -21,10 +21,25 @@ a:hover {
   font-size: 12px;
 }
 
-#header {
-  font-family: Apple Casual, Helvetica, sans-serif;
-  font-size: 30px;
+#header td {
+  vertical-align:bottom;
+  padding-right: 15px;
 }
+
+#header h1 {
+  font-family: Apple Casual, sans-serif;
+  font-style: none;
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+#slogan {
+  font-family: Times, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  text-align: bottom;
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
