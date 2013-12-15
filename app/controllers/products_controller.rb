@@ -83,4 +83,13 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :categories => {})
   end
+
+  def search
+    q = params[:product][:name]
+    @products = Product.find(:all, :conditions => ["name LIKE %?%",q])
+    if @products.nil?
+      redirect_to products_path, notice: "Sorry, Sloth Cadet, no items matching #{q}."
+    else
+      render :index, notice: "Here are all the fine products matching #{q}!"
+  end
 end
