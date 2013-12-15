@@ -34,7 +34,7 @@
 
 
 
-<%= form_for([@product, @product.reviews.build]) do |f| %>
+<%= form_for([@product, Review.new]) do |f| %>
     <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title %>
@@ -70,5 +70,14 @@
   <% end %>
 <% end %>
 
+
+  <% @product.reviews.each do |review| %>
+
+    <p><strong>Title: </strong><%= review.title %></p>
+    <p><strong>Author: </strong><%= review.author %></p>
+    <p><strong>Content: </strong><%= review.content %></p>
+    <p><strong>Rating: </strong><%= review.rating %></p>
+    <hr>
+  <% end %>
 
 

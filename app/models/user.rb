@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def self.search
+  	puts "searching...."
+  end
+
 end
