@@ -5,18 +5,20 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td class='row_title'><%= link_to product.name, product %></td>
-        <td>
-          <% unless session[:user_id].nil? %>
+        <td><img src="http://placekitten.com/150/150"></img></td>
+        <td id='product_description'>
+          <div id="product_title">
+            <%= link_to product.name, product %>
+          </div>
+          <%= number_to_currency(product.price) %>
+          <br>
+          <%= product.description %>
+          <div id="edit_destroy">
+            <% unless session[:user_id].nil? %>
             [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
-          <% end %>
+            <% end %>
+          </div>
         </td>
-      </tr>
-      <tr>
-        <td><%= product.description %></td>
-      </tr>
-      <tr>
-        <td><%= product.price %></td>
       </tr>
     <% end %>
   </tbody>
