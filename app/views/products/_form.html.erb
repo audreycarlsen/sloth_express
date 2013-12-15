@@ -11,7 +11,7 @@
   <% end %>
 
   <p>
-    <div class="field">
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -44,6 +44,10 @@
     <%= f.label :categories %><br>
     <%= f.select(:categories, @categories, {selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   </div>
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  </div>
+
   </p>
   <div class="actions">
     <%= f.submit("Onward, to glory!") %>

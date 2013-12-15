@@ -1,3 +1,25 @@
 <img src="http://placekitten.com/150/150"></img><br><br>
 <div class="title"><strong><%= @user.username %></strong></div>
 <em><%= @user.email %></em>
+
+My Products
+<br>
+<%= link_to 'Add New Product', new_product_path %>
+
+<% @products.each do |product| %>
+  <tr>
+    <td id='product_description'>
+      <div class="title">
+        <%= link_to product.name, product %>
+      </div>
+      <%= number_to_currency(product.price) %>
+      <br>
+      <%= product.description %>
+      <div id="edit_destroy">
+        <% unless session[:user_id].nil? %>
+        [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+        <% end %>
+      </div>
+    </td>
+  </tr>
+<% end %>
