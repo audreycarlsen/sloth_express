@@ -1,2 +1,31 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>Shopping Cart</p>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@product.price) %>
+</p>
+<p>
+  <strong>Photo URL:</strong>
+  <%= @product.photo %>
+</p>
+<p>
+  <strong>Stock:</strong>
+  <%= @product.stock %>
+</p>
+
+<p>
+<strong>Categories:</strong><br>
+  <% @product.categories.each do |category| %>
+    <ul><li><%= link_to "#{category.name}", category_path(category) %></li></ul>
+  <% end %>
+</p>
+
