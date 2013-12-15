@@ -8,9 +8,4 @@ class User < ActiveRecord::Base
   has_many :orders
 
   has_secure_password
-
-  def self.search
-  	puts "searching...."
-  end
-
 end

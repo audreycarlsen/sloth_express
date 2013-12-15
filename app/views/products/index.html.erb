@@ -1,18 +1,23 @@
 <h1>Products</h1>
 
+<% if current_user %>
+  <%= link_to 'Add New Product', new_product_path %>
+<% end %>
+
 <table>
 
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td class='row_title'><%= link_to product.name, product %></td>
-        <td>[<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
-      </tr>
-      <tr>
-        <td><%= product.description %></td>
-      </tr>
-      <tr>
-        <td><%= product.price %></td>
+        <td><img src="http://placekitten.com/150/150"></img></td>
+        <td id='product_description'>
+          <div class="title">
+            <%= link_to product.name, product %>
+          </div>
+          <%= number_to_currency(product.price) %>
+          <br>
+          <%= product.description %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -20,4 +25,3 @@
 
 <br>
 
-<%= link_to 'Create New Product!', new_product_path %>

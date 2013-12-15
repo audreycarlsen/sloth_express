@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
+</p>
+<p>
+  <strong>Sold By:</strong>
+  <%= @product.user_id.inspect %>
 </p>
 <p>
   <strong>Description:</strong>
