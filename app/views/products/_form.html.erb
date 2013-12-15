@@ -45,7 +45,7 @@
     <%= f.select(:categories, @categories, {selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   </div>
   <div class="field">
-    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
 
   </p>

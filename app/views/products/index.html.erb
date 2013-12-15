@@ -17,6 +17,11 @@
           <%= number_to_currency(product.price) %>
           <br>
           <%= product.description %>
+          <div id="edit_destroy">
+            <% if session[:user_id] == product.user_id %>
+              [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>

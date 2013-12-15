@@ -4,7 +4,7 @@
 </p>
 <p>
   <strong>Sold By:</strong>
-  <%= @product.user_id.inspect %>
+  <%= User.find(@product.user_id).username %>
 </p>
 <p>
   <strong>Description:</strong>
@@ -31,7 +31,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 
 
