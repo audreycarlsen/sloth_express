@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\w+@\w+\.\w+/i
 
   has_many :products
+  has_many :orders
 
   has_secure_password
 

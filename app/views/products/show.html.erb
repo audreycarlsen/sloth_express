@@ -10,7 +10,7 @@
 </p>
 <p>
   <strong>Price:</strong>
-  <%= @product.price %>
+  <%= number_to_currency(@product.price) %>
 </p>
 <p>
   <strong>Photo URL:</strong>
@@ -51,7 +51,7 @@
     </div>
     <div class="field">
       <%= f.label :rating %><br>
-      <%= f.number_field :rating %>
+      <%= f.select( :rating, options_for_select(1..5) ) %>
     </div>
 
     <br>
@@ -73,11 +73,16 @@
 
   <% @product.reviews.each do |review| %>
 
-    <p><strong>Title: </strong><%= review.title %></p>
-    <p><strong>Author: </strong><%= review.author %></p>
-    <p><strong>Content: </strong><%= review.content %></p>
-    <p><strong>Rating: </strong><%= review.rating %></p>
+    <div class="review">
+      <strong><%= review.title %></strong> </br>
+      <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> </br>
+      <%= review.content %> </br>
+      <%= review.rating.times do %>
+      <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+      <% end %>
+   
     <hr>
   <% end %>
+   </div>
 
 
