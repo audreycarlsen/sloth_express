@@ -4,6 +4,9 @@ class OrderItemsController < ApplicationController
   
   def new
     @order_item = OrderItem.new
+    # @order_item[:user_id] = session[:user_id]
+    # @order_item[:quantity] = 1
+
   end
   
 
@@ -11,8 +14,9 @@ class OrderItemsController < ApplicationController
     if session[:order_id]
       @order = Order.find(session[:order_id])
     else
-      @order = Order.create
-      session[:order_id] = @order.id
+      @order = Order.create(status: "pending")
+      # session[:order_id] = @order.id
+      # @order[:status] = "pending"
     end
     
 
@@ -27,6 +31,4 @@ private
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
-  def order_params
-    params.require(:order).permit(:status, :user_id, :products => {})
-  end
+  

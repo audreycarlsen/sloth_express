@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+if status pending:
 <p>Shopping Cart</p>
 
 <% @order.products.each do |product| %>
@@ -10,4 +11,8 @@
       </li>
   </ul>
   <% end %>
+
+  else
+  do something else
+
 
