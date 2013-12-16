@@ -34,6 +34,13 @@ class OrdersController < ApplicationController
   def update
   end
 
+  def add_to_cart
+    unless session[:order_id]
+      @order = Order.new(order_params)
+    end
+      @order_item = OrderItem.new(order_id: session[:order_id], product_id: params[:product_id])
+  end
+
   private
 
   def set_order
