@@ -8,8 +8,6 @@ class OrderItemsController < ApplicationController
   
 
   def create
-   
-
     if session[:order_id]
       @order = Order.find(session[:order_id])
     else
@@ -20,7 +18,7 @@ class OrderItemsController < ApplicationController
 
     @product = Product.find(params[:product_id])
     @order.products << @product
-    redirect_to orders_show_path
+    redirect_to order_path(@order.id)
   end
 
 end
@@ -29,6 +27,6 @@ private
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
-  # def order_params
-  #   params.require(:order).permit(:status, :user_id, :products => {})
-  # end
+  def order_params
+    params.require(:order).permit(:status, :user_id, :products => {})
+  end

@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_action :set_order, only:[:edit, :show, :update, :destroy]
+
   def show
   end
 
