@@ -9,8 +9,10 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><img src="http://placekitten.com/150/150"></img></td>
-        <td id='product_description'>
+        <td>
+          <div><%= image_tag(product.photo, height: '150') %> </div> 
+        </td>
+        <td> 
           <div class="title">
             <%= link_to product.name, product %>
           </div>
