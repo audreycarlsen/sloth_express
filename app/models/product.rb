@@ -9,4 +9,9 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_items
   has_many :reviews
   belongs_to :user
+
+  def self.search(query)
+    Product.where(["name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%"])
+
+  end
 end

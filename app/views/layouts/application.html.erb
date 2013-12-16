@@ -28,6 +28,12 @@
 
 <div id= "columns">
   <div id="nav">
+  <%= form_tag search_products_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, nil, placeholder: "Sloths" %>
+    <%= submit_tag "Search" %>
+  </p>
+  <% end %>
     <% if current_user %>
       <%= link_to "My Account", user_path(session[:user_id]) %>
     <% else %>
