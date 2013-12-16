@@ -5,10 +5,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-
   end
 
   def show
+    @products = Product.where(:user_id => current_user.id)
   end
 
   def new
