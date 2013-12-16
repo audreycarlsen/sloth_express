@@ -20,10 +20,9 @@ class SessionsController < ApplicationController
   end
 
   def create_order
-    session[:order_id] = order.id
-  end
-
-  def destroy_order
-    session[:order_id] = nil
-  end
+    order = Order.find_by(order: params[:order][:id])
+    unless session[:order_id]
+      session[:order_id] = order.id
+    end
+  end 
 end

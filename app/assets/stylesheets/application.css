@@ -3,17 +3,46 @@ body {
 }
 
 a {
-  color: blue;
+  color: teal;
   text-decoration: none;
 }
 
 a:visited {
-  color: blue;
+  color: teal;
 }
 
 a:hover {
   color: orange;
   text-decoration: underline;
+}
+
+#header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  color: black;
+  text-align: center;
+}
+
+#columns {
+  background: LightGrey;
+}
+
+#main {
+margin-left: 17em;
+padding-top: 4ex;
+padding-left: 2em;
+background: white;
+}
+
+#nav {
+
+float: left;
+padding-top: 1em;
+padding-left: 1em;
+padding-bottom: 1em;
+width: 16em;
+
 }
 
 #user_nav {
@@ -26,7 +55,7 @@ a:hover {
   padding-right: 15px;
 }
 
-#header h1 {
+#header h1 a {
   font-family: Apple Casual, sans-serif;
   font-style: none;
   font-size: 40px;

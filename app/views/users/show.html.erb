@@ -1,10 +1,11 @@
 <img src="http://placekitten.com/150/150"></img><br><br>
-<div class="title"><strong><%= @user.username %></strong></div>
+<div><h1><%= @user.username %></h1></div>
 <em><%= @user.email %></em>
 
-My Products
-<br>
+<h2>My Products</h2>
 <%= link_to 'Add New Product', new_product_path %>
+
+<br><br>
 
 <% @products.each do |product| %>
   <tr>

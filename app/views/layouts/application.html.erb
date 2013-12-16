@@ -20,29 +20,30 @@
 <div id="header">
   <table>
     <tr>
-      <td><h1>SlothExpress</h1></td>
+      <td><%= link_to(image_tag("logo.png"), products_path)%></td>
       <td id='slogan'>"Made by sloths, for sloths!"</td>
     </tr>
   </table>
 </div>
 
-<div>
+<div id= "columns">
   <div id="nav">
     <% if current_user %>
       <%= link_to "My Account", user_path(session[:user_id]) %>
     <% else %>
       <%= link_to "My Account", log_in_path %>
-    <% end %>
-     <a href="/products">Products</a> <a href="/categories">Categories</a>
+    <% end %>|
+     <%= link_to "Products", products_path %> |
+     <%= link_to "Categories", categories_path %>
   </div>
 
-  <% flash.each do |name, msg| %>
+  <div id= "main">
+     <% flash.each do |name, msg| %>
     <div class="flash_<%= name %>">
       <%= msg %>
     </div>
   <% end %>
 
-  <div>
     <%= yield %>
   </div>
 </div>
