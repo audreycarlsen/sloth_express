@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
   belongs_to :product
 
-   validates :name, presence: true
+   validates :title, presence: true
 end
