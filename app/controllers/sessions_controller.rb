@@ -23,5 +23,6 @@ class SessionsController < ApplicationController
     order = Order.find_by(order: params[:order][:id])
     unless session[:order_id]
       session[:order_id] = order.id
+    end
   end 
 end
