@@ -32,8 +32,9 @@
       <%= link_to "My Account", user_path(session[:user_id]) %>
     <% else %>
       <%= link_to "My Account", log_in_path %>
-    <% end %>
-     <a href="/products">Products</a> <a href="/categories">Categories</a>
+    <% end %>|
+     <a href="/products">Products</a> |
+     <a href="/categories">Categories</a>
   </div>
 
   <% flash.each do |name, msg| %>
