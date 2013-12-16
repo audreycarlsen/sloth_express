@@ -26,7 +26,7 @@
   </table>
 </div>
 
-<div>
+<div id= "columns">
   <div id="nav">
     <% if current_user %>
       <%= link_to "My Account", user_path(session[:user_id]) %>
@@ -37,13 +37,13 @@
      <%= link_to "Categories", categories_path %>
   </div>
 
-  <% flash.each do |name, msg| %>
+  <div id= "main">
+     <% flash.each do |name, msg| %>
     <div class="flash_<%= name %>">
       <%= msg %>
     </div>
   <% end %>
 
-  <div>
     <%= yield %>
   </div>
 </div>
