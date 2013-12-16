@@ -3,12 +3,12 @@ body {
 }
 
 a {
-  color: blue;
+  color: teal;
   text-decoration: none;
 }
 
 a:visited {
-  color: blue;
+  color: teal;
 }
 
 a:hover {
