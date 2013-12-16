@@ -1,5 +1,6 @@
 SlothExpress::Application.routes.draw do
 
+  get "purchases/new"
   get "orders/show"
   get "orders/index"
   get "orders/edit"
