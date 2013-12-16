@@ -84,12 +84,13 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock,  :user_id, :categories => {})
   end
 
-  def search
-    q = params[:product][:name]
-    @products = Product.find(:all, :conditions => ["name LIKE %?%",q])
+  def self.search
+    @products = Product.where("name = ? OR descriptions LIKE ?", "%params[:name]%", "%params[:description]%" )
+    #what is params[:product] doing?
     if @products.nil?
-      redirect_to products_path, notice: "Sorry, Sloth Cadet, no items matching #{q}."
+      redirect_to products_path, notice: "Sorry, Sloth Cadet, no items matching search parameters."
+      #Is params[:product] what to put here? That's not the search term, is it?
     else
-      render :index, notice: "Here are all the fine products matching #{q}!"
+      render :index, notice: "Here are all the fine products matching your search!"
   end
 end
