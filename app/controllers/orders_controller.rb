@@ -10,25 +10,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    #fill this with checkout
-
-    @order = Order.new(order_params)
-    #Not needed
-    @products = Product.all.collect { |p| [p.name, p.id]}
-
-    #No
-    params[:order][:products].each do |product_id|
-      next if product_id.to_i == 0 
-      @order.products << Product.find(product_id.to_i)
-    end
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to 'orders/show', notice: 'Item was added to your cart'}
-      else
-        format.html { render @products_path }
-      end
-    end
+   
+  
   end
 
   def update

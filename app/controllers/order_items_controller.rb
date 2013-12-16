@@ -8,13 +8,19 @@ class OrderItemsController < ApplicationController
   
 
   def create
-    @order_item = OrderItem.find(params[:id])
+   
 
-    unless session[:order_id]
-      @order = Order.new(order_params)
+    if session[:order_id]
+      @order = Order.find(session[:order_id])
+    else
+      @order = Order.create
+      session[:order_id] = @order.id
     end
-      @order_item = OrderItem.new(order_id: session[:order_id], product_id: params[:product_id])
-      render :new
+    
+
+    @product = Product.find(params[:product_id])
+    @order.products << @product
+    redirect_to orders_show_path
   end
 
 end
@@ -23,4 +29,6 @@ private
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
-
+  # def order_params
+  #   params.require(:order).permit(:status, :user_id, :products => {})
+  # end
