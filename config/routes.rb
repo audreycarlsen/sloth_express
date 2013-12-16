@@ -9,6 +9,9 @@ SlothExpress::Application.routes.draw do
   resources :categories
   
   resources :products do
+    collection do
+      get 'search'
+    end
     resources :reviews
   end
 
