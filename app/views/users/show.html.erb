@@ -1,26 +1,35 @@
-<img src="http://placekitten.com/150/150"></img><br><br>
 <div><h1><%= @user.username %></h1></div>
 <em><%= @user.email %></em>
 
-<h2>My Products</h2>
-<%= link_to 'Add New Product', new_product_path %>
+<table id="user_table">
+<tr>
+  <td id="my_products">
+    <h2>My Products</h2>
+    <%= button_to 'Create New Product', new_product_path %>
 
-<br><br>
+    <br>
 
-<% @products.each do |product| %>
-  <tr>
-    <td id='product_description'>
-      <div class="title">
-        <%= link_to product.name, product %>
-      </div>
-      <%= number_to_currency(product.price) %>
-      <br>
-      <%= product.description %>
-      <div id="edit_destroy">
-        <% unless session[:user_id].nil? %>
-        [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
-        <% end %>
-      </div>
-    </td>
-  </tr>
-<% end %>
+    <% @products.each do |product| %>
+      <table>
+        <tr>
+        <td id='product_description'>
+          <div class="title">
+            <%= link_to product.name, product %>
+          </div>
+          <%= number_to_currency(product.price) %>
+          <br>
+          <%= product.description %>
+          <div id="edit_destroy">
+          [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+          </div>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+  </td>
+  <td>
+    <h2>Order History</h2>
+    This is where the order history will go.
+  </td>
+</tr>
+</table>

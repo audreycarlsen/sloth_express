@@ -33,7 +33,7 @@
 
 <%= link_to 'Back', products_path %>
 
-<% unless session[:user_id] && session[:user_id] == @product.user_id %>
+<% unless current_user && current_user.id == @product.user_id %>
   <%= form_for([@product, Review.new]) do |f| %>
     <p>
       <div class="field">
@@ -43,10 +43,10 @@
     </p>
     <p>
     <div class="field">
-      <% if session[:user_id].nil? %>
-        <%= f.hidden_field :author, :value => 'Anonymous' %>
+      <% if current_user %>
+        <%= f.hidden_field :author, :value => User.find(current_user.id).username %> 
       <% else %>
-        <%= f.hidden_field :author, :value => User.find(current_user.id).username %>
+        <%= f.hidden_field :author, :value => 'Anonymous' %>
       <% end %>
     </div> 
     </p>

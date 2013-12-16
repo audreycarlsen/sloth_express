@@ -1,9 +1,9 @@
-<h1>Products</h1>
+<h1>Sloth Marketplace</h1>
 
 <% if current_user %>
-  <%= link_to 'Add New Product', new_product_path %>
+  <%= button_to 'Create New Product', new_product_path %>
 <% end %>
-
+<br><br>
 
 <table>
 
@@ -15,18 +15,18 @@
             <% if product.photo == "" %>
               <%= image_tag("/assets/sloth_default.png") %> 
             <% else %>
-              <%= image_tag(product.photo, height: '150') %> 
+              <%= image_tag(product.photo, width: '150') %> 
             <% end %>
           </div> 
         </td>
-        <td> 
+        <td id="product_description"> 
           <div class="title">
             <%= link_to product.name, product %>
           </div>
           <%= number_to_currency(product.price) %>
           <br>
           <%= product.description %>
-          <%= button_to "Add", :method => :post %>
+          <%= button_to "Add to Cart", :method => :post %>
           <div id="edit_destroy"> 
               <% if session[:user_id] == product.user_id %>          
               [<%= link_to 'Edit', edit_product_path(product) %>] 
