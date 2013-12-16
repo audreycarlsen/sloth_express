@@ -7,6 +7,7 @@ SlothExpress::Application.routes.draw do
   root 'products#index'
   
   resources :categories
+  resources :order_items
   
   resources :products do
     resources :reviews
