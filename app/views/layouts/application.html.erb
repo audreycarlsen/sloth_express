@@ -33,8 +33,8 @@
     <% else %>
       <%= link_to "My Account", log_in_path %>
     <% end %>|
-     <a href="/products">Products</a> |
-     <a href="/categories">Categories</a>
+     <%= link_to "Products", products_path %>|
+     <%= link_to "Categories", categories_path %>
   </div>
 
   <% flash.each do |name, msg| %>
