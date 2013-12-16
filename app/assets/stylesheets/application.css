@@ -29,18 +29,18 @@ a:hover {
 }
 
 #main {
-margin-left: 17em;
-padding-top: 4ex;
-padding-left: 2em;
-background: white;
+  margin-left: 17em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
 }
 
 #nav {
-float: left;
-padding-top: 1em;
-padding-left: 1em;
-padding-bottom: 1em;
-width: 16em;
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 16em;
 }
 
 #user_nav {
@@ -79,4 +79,8 @@ width: 16em;
 #user_table td {
   padding-right: 40px;
   vertical-align: top;
+}
+
+#my_products {
+  width: 50%;
 }

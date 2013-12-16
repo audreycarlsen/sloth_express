@@ -3,33 +3,33 @@
 
 <table id="user_table">
 <tr>
-<td>
-  <h2>My Products</h2>
-  <%= button_to 'Create New Product', new_product_path %>
+  <td id="my_products">
+    <h2>My Products</h2>
+    <%= button_to 'Create New Product', new_product_path %>
 
-  <br>
+    <br>
 
-  <% @products.each do |product| %>
-    <table>
-      <tr>
-      <td id='product_description'>
-        <div class="title">
-          <%= link_to product.name, product %>
-        </div>
-        <%= number_to_currency(product.price) %>
-        <br>
-        <%= product.description %>
-        <div id="edit_destroy">
-        [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
-        </div>
-      </td>
-    </tr>
-  </table>
-  <% end %>
-</td>
-<td>
-  <h2>Order History</h2>
-  This is where the order history will go.
-</td>
+    <% @products.each do |product| %>
+      <table>
+        <tr>
+        <td id='product_description'>
+          <div class="title">
+            <%= link_to product.name, product %>
+          </div>
+          <%= number_to_currency(product.price) %>
+          <br>
+          <%= product.description %>
+          <div id="edit_destroy">
+          [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+          </div>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+  </td>
+  <td>
+    <h2>Order History</h2>
+    This is where the order history will go.
+  </td>
 </tr>
 </table>
