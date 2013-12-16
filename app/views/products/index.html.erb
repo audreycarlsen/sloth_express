@@ -4,13 +4,20 @@
   <%= link_to 'Add New Product', new_product_path %>
 <% end %>
 
+
 <table>
 
   <tbody>
     <% @products.each do |product| %>
       <tr>
         <td>
-          <div><%= image_tag(product.photo, height: '150') %> </div> 
+          <div>
+            <% if product.photo == "" %>
+              <%= image_tag("/assets/sloth_default.png") %> 
+            <% else %>
+              <%= image_tag(product.photo, height: '150') %> 
+            <% end %>
+          </div> 
         </td>
         <td> 
           <div class="title">
