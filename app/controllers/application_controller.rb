@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
+
+  def current_order
+    @current_order ||= Order.find(session[:order_id]) if session[:order_id]
+  end
+  helper_method :current_order
 end

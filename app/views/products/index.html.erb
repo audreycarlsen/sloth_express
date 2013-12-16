@@ -15,7 +15,9 @@
           <%= product.description %>
           <div id="edit_destroy">
             <% unless session[:user_id].nil? %>
-            [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+            <%= button_to "Add", add_product_path(product), :method => :post %>
+            [<%= link_to 'Edit', edit_product_path(product) %>]
+            [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
             <% end %>
           </div>
         </td>
