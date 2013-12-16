@@ -33,47 +33,53 @@
 
 <%= link_to 'Back', products_path %>
 
-
-<%= form_for([@product, Review.new]) do |f| %>
-    <div class="field">
+<% unless session[:user_id] && session[:user_id] == @product.user_id %>
+  <%= form_for([@product, Review.new]) do |f| %>
+    <p>
+      <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title %>
     </div>
-    <br>
+    </p>
+    <p>
     <div class="field">
-      <%= f.label :author %><br>
-      <%= f.text_field :author %>
+      <% if session[:user_id].nil? %>
+        <%= f.hidden_field :author, :value => 'Anonymous' %>
+      <% else %>
+        <%= f.hidden_field :author, :value => User.find(current_user.id).username %>
+      <% end %>
+    </div> 
+    </p>
+    <p>
+    <div class="field">
+      <%= f.label :content, 'Write your review:' %><br>
+      <%= f.text_area :content %>
     </div>
-    <br>
+    </p>
+    <p>
     <div class="field">
-      <%= f.label :content %><br>
-      <%= f.text_field :content %>
-    </div>
-    <div class="field">
-      <%= f.label :rating %><br>
+      <%= f.label :rating, 'Rate it:' %><br>
       <%= f.select( :rating, options_for_select(1..5) ) %>
     </div>
-
-    <br>
+    </p>
+    <p>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit("Onward, to glory!") %>
     </div>
+    </p>
+  <% end %>
 <% end %>
 
-
-
+<div class="review">
   <% @product.reviews.each do |review| %>
-
-    <div class="review">
-      <strong><%= review.title %></strong> </br>
-      <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> </br>
-      <%= review.content %> </br>
+      <strong><%= review.title %></strong><br>
+      <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> <br>
+      <%= review.content %> <br>
       <%= review.rating.times do %>
-      <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+        <%= image_tag "sloth_star.jpeg",size:"25x25" %>
       <% end %>
-   
     <hr>
   <% end %>
-   </div>
+</div>
 
 
