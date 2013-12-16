@@ -92,5 +92,6 @@ class ProductsController < ApplicationController
       #Is params[:product] what to put here? That's not the search term, is it?
     else
       render :index, notice: "Here are all the fine products matching your search!"
+    end
   end
 end
