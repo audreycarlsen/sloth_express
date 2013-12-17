@@ -8,8 +8,10 @@ class OrderItemsController < ApplicationController
   
 
   def create
+    @product = Product.find(params[:product_id])
+
     if @product.stock < 1
-      redirect_to
+      redirect_to product_path(@product), notice: "This product is out of stock."
     else
       if session[:order_id]
         @order = Order.find(session[:order_id])
