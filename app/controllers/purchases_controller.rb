@@ -3,9 +3,11 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
+  def show
+  end
+
   def create
     @purchase = Purchase.new(purchase_params)
-
 
     respond_to do |format|
       if @purchase.save
@@ -18,16 +20,16 @@ class PurchasesController < ApplicationController
         end
 
         # Don't know if this code works yet:
-
+        # Decreases product stock by 1
         unless @product.stock < 1
           @product.stock -= 1
         end
 
+        # Sets order status to paid
         current_order.status = "Paid"
 
+        # Empties cart
         session[:order_id] = nil
-
-        # End
 
       else
         format.html { render action: 'new' }
