@@ -3,7 +3,7 @@
 <%= form_for(@purchase) do |f| %>
   <% if @purchase.errors.any? %>
     <div id="error_messages">
-      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being made:</h2>
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this order from being placed:</h2>
       <ul>
       <% @purchase.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -28,6 +28,7 @@
     <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </div>
   </p>
   <p>
     <div class="field">
@@ -37,12 +38,14 @@
   </p>
   <p>
     <div class="field">
-    <%= f.label :cc_expiration, "Expiration Date" %><br>
-    <%= f.text_field :cc_expiration %>
-  </div>
+    <%= f.label 'Expiration Date' %><br>
+    <%= select_month nil, {add_month_numbers: true}, {name: 'purchase[expiration_month]'} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: 'purchase[expiration_year]'} %>
+    </div>
+  </p>
   <p>
     <div class="field">
-    <%= f.label :cvv, "Security Code" %><br>
+    <%= f.label :cvv, "Security Code (CVV)" %><br>
     <%= f.text_field :cvv %>
     </div>
   </p>

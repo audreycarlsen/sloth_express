@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
 
+
     respond_to do |format|
       if @purchase.save
         format.html do
@@ -23,6 +24,6 @@ class PurchasesController < ApplicationController
 
   private
   def purchase_params
-    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cc_expiration, :cvv, :zipcode )
+    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cvv, :zipcode, :expiration_month, :expiration_year)
   end
 end
