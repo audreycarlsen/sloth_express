@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product.new(item_status: "active")
     categories_list
   end
 
@@ -92,6 +92,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock,  :user_id, :categories => {})
+    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :user_id, :item_status, :categories => {})
   end
 end
