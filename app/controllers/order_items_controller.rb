@@ -14,12 +14,14 @@ class OrderItemsController < ApplicationController
       @order = Order.create
       session[:order_id] = @order.id
     end
+    add_item_to_cart
+  end
 
+  def add_item_to_cart
     @product = Product.find(params[:product_id])
     @order_item = OrderItem.new 
     @order_item.product = @product
     @order_item.order = @order
-    @order_item.quantity = 1
 
     if @order_item.save
       redirect_to order_path(@order)
@@ -27,7 +29,6 @@ class OrderItemsController < ApplicationController
       render :new
     end
   end
-
 
   def remove_item
     @order_item = OrderItem.find_by(order_id: current_order.id, product_id: params[:product_id])
