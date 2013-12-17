@@ -16,6 +16,19 @@ class PurchasesController < ApplicationController
             redirect_to root_path, notice: 'Thank you for your order!'
           end
         end
+
+        # Don't know if this code works yet:
+
+        unless @product.stock < 1
+          @product.stock -= 1
+        end
+
+        current_order.status = "Paid"
+
+        session[:order_id] = nil
+
+        # End
+
       else
         format.html { render action: 'new' }
       end
