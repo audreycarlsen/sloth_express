@@ -16,12 +16,18 @@
     <% else %>
       <%= link_to "Sign In", log_in_path %>
     <% end %>
-    
-    | <%= image_tag("/assets/cart.png") %>
+
+    |
     
     <% if current_order %>
+      <%= link_to order_path(current_order.id) do %>
+        <%= image_tag("/assets/cart.png") -%>
+      <% end %>
       <%= link_to "Cart", order_path(current_order.id) %>
     <% else %>
+      <%= link_to '/home/empty' do %>
+        <%= image_tag("/assets/cart.png") %>
+      <% end %>
       <%= link_to "Cart", '/home/empty' %>
     <% end %>
 </div>
@@ -52,20 +58,20 @@
       <%= link_to "My Account", log_in_path %>
     <% end %>
     </li>
-    <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse</a>
+    <br><br>
+    <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
 
         <ul id="dropdown" style="display:none">
-          <li><a href="#" onclick="toggle_visibility('categories_dropdown');">Category</a>
+          <li><%= link_to "All Products", products_path %> </li>
+          <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
 
             <ul id="categories_dropdown" style="display:none">
               <% Category.all.each do |category| %>
               <li><%= link_to "#{category.name}", category %></li> 
               <% end %>
-            </ul>
-        
-            </li>
-            <li><%= link_to "Products", products_path %> </li>
-            <li><%= link_to "Vendors", vendors_path %></li> 
+            </ul></li>
+            
+            <li><%= link_to "By Vendors", vendors_path %></li> 
         </ul>
  
     </ul>

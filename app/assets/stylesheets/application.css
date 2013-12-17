@@ -85,26 +85,24 @@ a:hover {
   width: 50%;
 }
 
-
 .product {
   margin:5px;
   padding: 5px;
   height:auto;
   width:auto;
   float:left;
-  }
+}
+
 .product img {
   display:inline;
   margin:5px;
   border:1px solid #ffffff;
-  }
+}
 
-  #product_description {
+#product_description {
   vertical-align: top;
   padding-top: 10px;
   padding-left: 10px;
   line-height: 25px;
   font-size: 15px;
 }
-
-
