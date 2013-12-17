@@ -60,5 +60,10 @@ private
     params.require(:category).permit(:name, :products => {})
   end
 
+  def check_login
+    if session[:user_id].nil?
+      redirect_to new_session_path, :notice => "Please log in or create an account."
+    end
+  end
   
 end
