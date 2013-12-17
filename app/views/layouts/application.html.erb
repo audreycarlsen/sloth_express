@@ -16,12 +16,18 @@
     <% else %>
       <%= link_to "Sign In", log_in_path %>
     <% end %>
-    
-    | <%= image_tag("/assets/cart.png") %>
+
+    |
     
     <% if current_order %>
+      <%= link_to order_path(current_order.id) do %>
+        <%= image_tag("/assets/cart.png") -%>
+      <% end %>
       <%= link_to "Cart", order_path(current_order.id) %>
     <% else %>
+      <%= link_to '/home/empty' do %>
+        <%= image_tag("/assets/cart.png") %>
+      <% end %>
       <%= link_to "Cart", '/home/empty' %>
     <% end %>
 </div>
