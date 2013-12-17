@@ -1,5 +1,11 @@
 body {
   font-family: Helvetica;
+  height:100%;
+  min-height: 900px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -26,6 +32,7 @@ a:hover {
 
 #columns {
   background: LightGrey;
+  min-height: 900px;
 }
 
 #main {
@@ -33,6 +40,7 @@ a:hover {
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
+  min-height: 900px;
 }
 
 #nav {
@@ -64,14 +72,6 @@ a:hover {
   font-size: 20px;
 }
 
-#product_description {
-  vertical-align: top;
-  padding-top: 10px;
-  padding-left: 10px;
-  line-height: 25px;
-  font-size: 15px;
-}
-
 #edit_destroy {
   font-size: 12px;
 }
@@ -83,4 +83,26 @@ a:hover {
 
 #my_products {
   width: 50%;
+}
+
+.product {
+  margin:5px;
+  padding: 5px;
+  height:auto;
+  width:auto;
+  float:left;
+}
+
+.product img {
+  display:inline;
+  margin:5px;
+  border:1px solid #ffffff;
+}
+
+#product_description {
+  vertical-align: top;
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 25px;
+  font-size: 15px;
 }
