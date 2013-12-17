@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   has_many :orders
 
   has_secure_password
+
+  def self.vendors
+    User.all.reject do |user|
+      user.products.empty?
+    end
+  end
 end
