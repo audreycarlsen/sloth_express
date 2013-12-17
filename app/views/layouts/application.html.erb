@@ -54,10 +54,10 @@
     </li>
     <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse</a>
 
-        <ul id="dropdown">
+        <ul id="dropdown" style="display:none">
           <li><a href="#" onclick="toggle_visibility('categories_dropdown');">Category</a>
 
-            <ul id="categories_dropdown">
+            <ul id="categories_dropdown" style="display:none">
               <% Category.all.each do |category| %>
               <li><%= link_to "#{category.name}", category %></li> 
               <% end %>
