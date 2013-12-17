@@ -1,13 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>Shopping Cart</p>
+ <table>
+    <thead>
+      <tr>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+  </thead>
 
-<% @order.products.each do |product| %>
+  <tbody>
+    <% @order.products.each do |product| %>
+    <tr>
+        <td><%= link_to "#{product.name}", product_path(product) %></td>
+        <td><%= number_to_currency(product.price) %>
+        <td><%= qty = OrderItem.find_by(product_id: product.id, order_id: current_order.id).quantity.to_i %></td>
+        <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
+    </tr>
+    <% end %> 
+  </tbody>
+ </table>
+</br>
+Order Total:
 
-    <ul>
-      <li><%= link_to "#{product.name}", product_path(product) %>
+</br>
+ <p>link to checkout</p>
 
-      </li>
-  </ul>
-  <% end %>
-
+ 
+ 

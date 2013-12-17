@@ -15,10 +15,17 @@ class OrderItemsController < ApplicationController
       session[:order_id] = @order.id
     end
     
+    @order_item = OrderItem.new(order_id: current_order.id, product_id: params[:product_id], quantity: 1)
 
     @product = Product.find(params[:product_id])
     @order.products << @product
     redirect_to order_path(@order.id)
+  end
+
+  def remove_item
+    @order_item = OrderItem.find_by(order_id: current_order.id, product_id: params[:product_id])
+    @order_item.destroy
+    redirect_to order_path(current_order)
   end
 
 end

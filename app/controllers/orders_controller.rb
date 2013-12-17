@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only:[:edit, :show, :update, :destroy]
 
+  def new
+    @order = Order.new
+  end
+  
   def show
   end
 
@@ -12,8 +16,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-   
-  
   end
 
   def update
