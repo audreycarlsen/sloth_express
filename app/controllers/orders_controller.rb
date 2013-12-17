@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
   end
   
   def show
+    
+    if current_order.products.count == 0
+      redirect_to "/home/empty"
+    end
   end
 
   # def index

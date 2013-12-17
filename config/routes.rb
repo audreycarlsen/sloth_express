@@ -1,6 +1,5 @@
 SlothExpress::Application.routes.draw do
 
-  get "home/empty"
   root 'products#index'
   
   resources :products do
