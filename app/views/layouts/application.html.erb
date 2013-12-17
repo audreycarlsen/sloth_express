@@ -34,26 +34,56 @@
     <%= submit_tag "Search" %>
   </p>
   <% end %>
+
+  <ul>
     <% if current_user %>
+    <li>
       <%= link_to "My Account", user_path(session[:user_id]) %>
     <% else %>
       <%= link_to "My Account", log_in_path %>
-    <% end %>|
-     <%= link_to "Products", products_path %> |
-     <%= link_to "Categories", categories_path %>
-     <%= link_to "Vendors", vendors_path %>
+    <% end %>
+    </li>
+    <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse</a>
+
+        <ul id="dropdown">
+          <li><a href="#" onclick="toggle_visibility('categories_dropdown');">Category</a>
+
+            <ul id="categories_dropdown">
+              <% Category.all.each do |category| %>
+              <li><%= link_to "#{category.name}", category %></li> 
+              <% end %>
+            </ul>
+        
+            </li>
+            <li><%= link_to "Products", products_path %> </li>
+            <li><%= link_to "Vendors", vendors_path %></li> 
+        </ul>
+ 
+    </ul>
+   
   </div>
 
   <div id= "main">
      <% flash.each do |name, msg| %>
-    <div class="flash_<%= name %>">
-      <%= msg %>
-    </div>
-  <% end %>
+      <div class="flash_<%= name %>">
+        <%= msg %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </div>
 </div>
 
 </body>
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
 </html>
