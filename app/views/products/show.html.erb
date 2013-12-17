@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
+</p>
+<p>
+  <strong>Sold By:</strong>
+  <%= User.find(@product.user_id).username %>
 </p>
 <p>
   <strong>Description:</strong>
@@ -13,8 +15,8 @@
   <%= number_to_currency(@product.price) %>
 </p>
 <p>
-  <strong>Photo URL:</strong>
-  <%= @product.photo %>
+  <strong>Photo:</strong><br>
+  <%= image_tag(@product.photo, height: '150') %> 
 </p>
 <p>
   <strong>Stock:</strong>
@@ -29,50 +31,56 @@
 </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 
-
-<%= form_for([@product, Review.new]) do |f| %>
-    <div class="field">
+<% unless current_user && current_user.id == @product.user_id %>
+  <%= form_for([@product, Review.new]) do |f| %>
+    <p>
+      <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title %>
     </div>
-    <br>
+    </p>
+    <p>
     <div class="field">
-      <%= f.label :author %><br>
-      <%= f.text_field :author %>
+      <% if current_user %>
+        <%= f.hidden_field :author, :value => User.find(current_user.id).username %> 
+      <% else %>
+        <%= f.hidden_field :author, :value => 'Anonymous' %>
+      <% end %>
+    </div> 
+    </p>
+    <p>
+    <div class="field">
+      <%= f.label :content, 'Write your review:' %><br>
+      <%= f.text_area :content %>
     </div>
-    <br>
+    </p>
+    <p>
     <div class="field">
-      <%= f.label :content %><br>
-      <%= f.text_field :content %>
-    </div>
-    <div class="field">
-      <%= f.label :rating %><br>
+      <%= f.label :rating, 'Rate it:' %><br>
       <%= f.select( :rating, options_for_select(1..5) ) %>
     </div>
-
-    <br>
+    </p>
+    <p>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit("Onward, to glory!") %>
     </div>
+    </p>
+  <% end %>
 <% end %>
 
-
-
+<div class="review">
   <% @product.reviews.each do |review| %>
-
     <div class="review">
       <strong><%= review.title %></strong> </br>
       <%= time_ago_in_words(review.created_at) %> ago, by <strong><%= review.author %>:</strong> </br>
       <%= review.content %> </br>
-      <%= review.rating.times do %>
+      <% review.rating.times do %>
       <%= image_tag "sloth_star.jpeg",size:"25x25" %>
       <% end %>
-   
     <hr>
   <% end %>
-   </div>
+</div>
 
 

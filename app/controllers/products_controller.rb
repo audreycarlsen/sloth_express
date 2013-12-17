@@ -69,6 +69,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    thing_were_searching_for = params[:search]
+    @products = Product.search(thing_were_searching_for)
+    if @products.empty?  
+      redirect_to products_path, notice: "Sorry, Sloth Cadet, no items matching #{thing_were_searching_for}."      
+    else
+      flash[:notice] = "Here are all the fine products matching #{thing_were_searching_for}!"
+      render :index
+    end
+  end
+
   private
   def check_login
     if session[:user_id].nil?
@@ -81,6 +92,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :categories => {})
+    params.require(:product).permit(:name, :description, :reviews, :price, :photo, :stock, :user_id, :item_status => "active", :categories => {})
   end
 end

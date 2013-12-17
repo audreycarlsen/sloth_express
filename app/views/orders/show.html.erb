@@ -1,31 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>Shopping Cart</p>
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-<p>
-  <strong>Price:</strong>
-  <%= number_to_currency(@product.price) %>
-</p>
-<p>
-  <strong>Photo URL:</strong>
-  <%= @product.photo %>
-</p>
-<p>
-  <strong>Stock:</strong>
-  <%= @product.stock %>
-</p>
+<h3>Shopping Cart:</h3>
+ <table>
+    <thead>
+      <tr>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+  </thead>
 
-<p>
-<strong>Categories:</strong><br>
-  <% @product.categories.each do |category| %>
-    <ul><li><%= link_to "#{category.name}", category_path(category) %></li></ul>
-  <% end %>
-</p>
+  <tbody>
+    <% @order.products.each do |product| %>
+    <tr>
+        <td><%= link_to "#{product.name}", product_path(product) %></td>
+        <td><%= number_to_currency(product.price) %>
+        <td><%= qty = OrderItem.find_by(product_id: product.id, order_id: current_order.id).quantity.to_i %></td>
+        <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
+    </tr>
+    <% end %> 
+  </tbody>
+ </table>
+</br>
+Order Total:
 
+</br>
+ <p>link to checkout</p>
+
+ 
+ 

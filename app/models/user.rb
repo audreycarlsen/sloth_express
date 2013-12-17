@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def self.search
-  	puts "searching...."
+  def self.vendors
+    User.all.reject do |user|
+      user.products.empty?
+    end
   end
-
 end

@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+  <%= user.username %> carries <%= user.products.count %> slothy products! <%= link_to 'Browse Store', user_path(user) %><br>
+  <br>
+
+<% end %>
+

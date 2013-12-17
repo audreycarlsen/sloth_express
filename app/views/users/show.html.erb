@@ -1,11 +1,49 @@
-<p>
-	<strong>User Name:</strong>
-	<%= @user.username %><br>
+<div><h1><%= @user.username %></h1></div>
+<em><%= @user.email %></em>
 
-	<strong>User email:</strong>
-	<%= @user.email %><br>
+<table id="user_table">
+<tr>
+  <td id="my_products">
+    <h2>My Products</h2>
+    <% if @user.id == session[:user_id] %>
+      <%= link_to 'Create New Product', new_product_path %>
+    <% end %>
+    <br>
 
-</p>
-
-
-
+    <% @products.each do |product| %>
+      <table>
+        <tr>
+        <td>
+          <div>
+            <% if product.photo == "" %>
+              <%= image_tag("/assets/sloth_default.png") %> 
+            <% else %>
+              <%= image_tag(product.photo, width: '150') %> 
+            <% end %>
+          </div> 
+        </td>
+        <td id='product_description'>
+          <div class="title">
+            <%= link_to product.name, product %>
+          </div>
+          <%= number_to_currency(product.price) %>
+          <br>
+          <%= product.description %>
+          <% if @user.id == session[:user_id] %>
+            <div id="edit_destroy">
+            [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+          <% end %>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+  </td>
+  <% if @user.id == session[:user_id] %>
+    <td>
+      <h2>Order History</h2>
+      This is where the order history will go.
+    </td>
+  <% end %>
+</tr>
+</table>

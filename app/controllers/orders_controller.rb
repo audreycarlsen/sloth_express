@@ -1,5 +1,11 @@
 class OrdersController < ApplicationController
 
+  before_action :set_order, only:[:edit, :show, :update, :destroy]
+
+  def new
+    @order = Order.new
+  end
+  
   def show
   end
 
@@ -10,25 +16,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @products = Product.all.collect { |p| [p.name, p.id]}
-
-    params[:order][:products].each do |product_id|
-      next if product_id.to_i == 0 
-      @order.products << Product.find(product_id.to_i)
-    end
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to 'orders/show', notice: 'Item was added to your cart'}
-      else
-        format.html { render @products_path }
-      end
-    end
   end
 
   def update
   end
+
 
   private
 
@@ -37,7 +29,7 @@ class OrdersController < ApplicationController
   end 
 
   def order_params
-    params.require(:order).require(:status, :user_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :products => {})
   end
 
 

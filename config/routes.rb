@@ -1,25 +1,30 @@
 SlothExpress::Application.routes.draw do
 
-  get "order_session/new"
-  get "orders/show"
-  get "orders/index"
-  get "orders/edit"
+  resources :orders
 
   root 'products#index'
   
   resources :categories
+  resources :order_items
   
   resources :products do
+    collection do
+      get 'search'
+    end
     resources :reviews
   end
 
   resources :users
   resources :sessions
+  resources :purchases
+  resources :categories
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
+  get "vendors" => "users#vendors", :as => "vendors"
 
+  delete '/order_items/:id/remove_item/:product_id' => "order_items#remove_item", as: :remove_item
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
