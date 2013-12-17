@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20131217055739) do
     t.integer  "stock"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "item_status", default: "active"
   end
 
   create_table "purchases", force: true do |t|

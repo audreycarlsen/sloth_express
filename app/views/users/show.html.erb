@@ -6,7 +6,7 @@
   <td id="my_products">
     <h2>My Products</h2>
     <% if @user.id == session[:user_id] %>
-      <%= button_to 'Create New Product', new_product_path %>
+      <%= link_to 'Create New Product', new_product_path %>
     <% end %>
     <br>
 

@@ -26,8 +26,8 @@
           <%= number_to_currency(product.price) %>
           <br>
           <%= product.description %>
-          <% unless session[:user_id] == product.user_id %>
-            <%= button_to "Add to Cart", :method => :post %>
+          <% unless session[:user_id] && session[:user_id] == product.user_id %>
+            <%= button_to "Add to Cart", order_items_path(:product_id => product.id)%>
           <% end %>
           <div id="edit_destroy"> 
               <% if session[:user_id] == product.user_id %>          
