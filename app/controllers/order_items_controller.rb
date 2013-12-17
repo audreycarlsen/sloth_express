@@ -19,9 +19,14 @@ class OrderItemsController < ApplicationController
 
   def add_item_to_cart
     @product = Product.find(params[:product_id])
-    @order_item = OrderItem.new 
-    @order_item.product = @product
-    @order_item.order = @order
+    @order_item = OrderItem.find_by(product_id: @product.id, order_id: session[:order_id])
+    if @order_item
+      @order_item.quantity += 1
+    else
+      @order_item = OrderItem.new 
+      @order_item.product = @product
+      @order_item.order = @order
+    end
 
     if @order_item.save
       redirect_to order_path(@order)
