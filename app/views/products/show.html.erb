@@ -40,8 +40,6 @@
 <% end %>
 <%= link_to 'Back', products_path %>
 
-<p><a href="#review_form" onclick="toggle_visibility('review_form');">Write a Product Review</a></p>
-
 <% unless current_user && current_user.id == @product.user_id %>
 <p><a href="#review_form" onclick="toggle_visibility('review_form');">Write a Product Review</a></p>
 
