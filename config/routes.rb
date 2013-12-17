@@ -6,8 +6,6 @@ SlothExpress::Application.routes.draw do
 
   root 'products#index'
   
-  resources :categories
-  
   resources :products do
     collection do
       get 'search'
@@ -17,6 +15,8 @@ SlothExpress::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :purchases
+  resources :categories
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"

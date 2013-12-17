@@ -1,0 +1,65 @@
+<h1>Checkout</h1>
+
+<%= form_for(@purchase) do |f| %>
+  <% if @purchase.errors.any? %>
+    <div id="error_messages">
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being made:</h2>
+      <ul>
+      <% @purchase.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <div class="field">
+    <%= f.label :email, "Email Address" %><br>
+    <%= f.text_field :email %>
+  </div>
+  </p>
+  <p>
+    <div class="field">
+    <%= f.label :address, "Mailing Address" %><br>
+    <%= f.text_field :address %>
+  </div>
+  </p>
+  <p>
+    <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <div class="field">
+    <%= f.label :cc_number, "Credit Card Number" %><br>
+    <%= f.text_field :cc_number %>
+  </div>
+  </p>
+  <p>
+    <div class="field">
+    <%= f.label :cc_expiration, "Expiration Date" %><br>
+    <%= f.text_field :cc_expiration %>
+  </div>
+  <p>
+    <div class="field">
+    <%= f.label :cvv, "Security Code" %><br>
+    <%= f.text_field :cvv %>
+    </div>
+  </p>
+  <p>
+    <div class="field">
+    <%= f.label :zipcode, "Billing Zip Code" %><br>
+    <%= f.text_field :zipcode %>
+    </div>
+  </p>
+ 
+  <div class="field">
+    <%= f.hidden_field :order_id, :value => 1 %>
+  </div>
+
+  </p>
+  <div class="actions">
+    <%= f.submit("Onward, to glory!") %>
+  </div>
+  </p>
+<% end %>
