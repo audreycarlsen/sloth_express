@@ -80,6 +80,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def retire_product
+    set_product
+    @product.update(item_status: "retired")
+    redirect_to product_path(@product), notice: "Product succesfully retired!"
+  end
+
   private
   def check_login
     if session[:user_id].nil?
