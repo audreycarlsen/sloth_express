@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
 
   def show
     @purchase = Purchase.find(params[:id])
+    @total = 0
   end
 
   def create
