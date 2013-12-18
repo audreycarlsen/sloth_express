@@ -1,9 +1,11 @@
 class PurchasesController < ApplicationController
+
   def new
     @purchase = Purchase.new
   end
 
   def show
+    @purchase = Purchase.find(params[:id])
   end
 
   def create
@@ -21,7 +23,6 @@ class PurchasesController < ApplicationController
       redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!'
     else
       redirect_to purchase_path(@purchase.id), notice: 'Your order was not completed. Please try again!'
-    end
   end
 
   private

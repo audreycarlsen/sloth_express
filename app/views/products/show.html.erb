@@ -1,3 +1,6 @@
+<% if @product.item_status == "retired" %>
+  <h3> This item is no longer active </h3>
+<% end %>
 
 <p>
   <strong>Name:</strong>
@@ -5,7 +8,8 @@
 </p>
 <p>
   <strong>Sold By:</strong>
-  <%= User.find(@product.user_id).username %>
+  <% @user = User.find(@product.user_id) %>
+  <%= link_to "#{@user.username}", user_path(@user) %>
 </p>
 <p>
   <strong>Description:</strong>
@@ -44,10 +48,12 @@
 <% end %>
 
 <% if current_user && current_user.id == @product.user_id %>
+  <% if @product.item_status == "active" %>
     <%= button_to "Retire", retire_product_path(:product_id => @product.id), method: :post %>
+  <% else %>
+    <%= button_to "Activate", activate_product_path(:product_id => @product.id), method: :post %>
+  <% end %>
 <% end %>
-
-<%= link_to 'Back', products_path %>
 
 <% unless current_user && current_user.id == @product.user_id %>
 <p><a href="#review_form" onclick="toggle_visibility('review_form');">Write a Product Review</a></p>

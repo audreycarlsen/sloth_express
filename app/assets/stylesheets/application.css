@@ -4,7 +4,7 @@ body {
   min-height: 900px;
 }
 
-ul {
+ul li {
   list-style-type: none;
 }
 
@@ -66,8 +66,8 @@ a:hover {
   width: 16em;
 }
 
-#side_nav !important {
-  padding-left: -40px;
+#side_nav {
+  padding-left: -40px ! important;
 }
 
 #dropdown, #categories_dropdown {

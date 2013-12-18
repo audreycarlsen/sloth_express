@@ -56,10 +56,10 @@
     </div>
   </p>
  
- <!-- Need to change :value => current_order.id -->
- 
+  <%= current_order.id %>
+
   <div class="field">
-    <%= f.hidden_field :order_id, :value => 1 %>
+    <%= f.hidden_field :order_id, :value => current_order.id %>
   </div>
 
   </p>
