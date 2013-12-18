@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      assign_cart_to_user
       redirect_to products_path, :notice => "Welcome, Sloth Cadet #{user.username}! Your mission, should you choose to accept it, is to find the best in sloth themed products and values!"
     else
       flash.now.alert = "Invalid email or password"
@@ -25,4 +26,11 @@ class SessionsController < ApplicationController
       session[:order_id] = order.id
     end
   end 
+
+  def assign_cart_to_user
+    if session[:order_id]
+      current_order.user_id = session[:user_id]
+      current_order.save
+    end
+  end
 end
