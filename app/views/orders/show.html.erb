@@ -15,7 +15,6 @@
         <td><%= link_to "#{product.name}", product_path(product) %></td>
         <td><%= number_to_currency(product.price) %></td>
         <% @order_item = OrderItem.find_by(product_id: product.id, order_id: current_order.id) %>
-        <td><%= @order_item.quantity.to_i %></td>
         <td><%= form_for(@order_item) do |f| %>
           <%= f.text_field  :quantity, :value => @order_item.quantity.to_i %>
           <%= f.submit('Update qty') %>

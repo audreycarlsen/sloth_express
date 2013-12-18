@@ -24,6 +24,7 @@ class PurchasesController < ApplicationController
       redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!'
     else
       redirect_to purchase_path(@purchase.id), notice: 'Your order was not completed. Please try again!'
+    end
   end
 
   private

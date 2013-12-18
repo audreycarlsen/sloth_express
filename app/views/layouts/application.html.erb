@@ -51,8 +51,8 @@
     <% end %>
 
     <ul id="side_nav">
-      <% if current_user %>
       <li>
+        <% if current_user %>
         <%= link_to "My Account", user_path(session[:user_id]) %>
       <% else %>
         <%= link_to "My Account", log_in_path %>
