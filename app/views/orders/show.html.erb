@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h3>Shopping Cart:</h3>
  <table>
     <thead>
@@ -17,6 +15,7 @@
         <td><%= link_to "#{product.name}", product_path(product) %></td>
         <td><%= number_to_currency(product.price) %>
         <% @order_item = OrderItem.find_by(product_id: product.id, order_id: current_order.id) %>
+        <%= @order_item.quantity.to_i %>
         <td><%= form_for(@order_item) do |f| %>
           <%= f.text_field  :quantity, :value => @order_item.quantity.to_i %>
           <%= f.submit('Update qty') %>

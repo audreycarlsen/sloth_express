@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
   def update
   end
 
-
   private
 
   def set_order

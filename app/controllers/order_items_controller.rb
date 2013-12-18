@@ -36,16 +36,16 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    if @order_item.update(order_item_params)
-      redirect_to order_path(@order_item.order.id)
+    if do_we_have_enough? && @order_item.update(order_item_params)
+      redirect_to order_path(@order_item.order.id) and return
     else
-      render order_path(@order_item.order.id) 
+      redirect_to order_path(@order_item.order.id), :notice => "Sorry, we only have #{@order_item.product.stock}." and return
     end
   end
 
-  # def check_stock
-
-  # end
+  def do_we_have_enough?
+    params[:order_item][:quantity].to_i <= @order_item.product.stock
+  end
 
   def remove_item
     @order_item = OrderItem.find_by(order_id: current_order.id, product_id: params[:product_id])
@@ -54,7 +54,8 @@ class OrderItemsController < ApplicationController
   end
 
 
-private
+  private
+
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
