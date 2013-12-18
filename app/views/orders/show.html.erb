@@ -10,6 +10,7 @@
   </thead>
 
   <tbody>
+    <% total = 0 %>
     <% @order.products.each do |product| %>
     <tr>
         <td><%= link_to "#{product.name}", product_path(product) %></td>
@@ -21,12 +22,13 @@
           <%= f.submit('Update qty') %>
           <% end %>
         <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
+        <% total += product.price * @order_item.quantity %>
     </tr>
     <% end %> 
   </tbody>
  </table>
 </br>
-Order Total:
+Order Total: <%= number_to_currency(total) %>
 
 </br>
  <p>link to checkout</p>
