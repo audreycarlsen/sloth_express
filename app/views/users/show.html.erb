@@ -10,7 +10,7 @@
     <% end %>
     <br><br>
 
-    <% @products.each do |product| %>
+    <% @user.products.each do |product| %>
       <table>
         <tr>
         <td>
@@ -28,7 +28,6 @@
           </div>
           <%= number_to_currency(product.price) %>
           <br>
-          <%= product.description %>
           <% if @user.id == session[:user_id] %>
             <div id="edit_destroy">
             [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
