@@ -83,6 +83,15 @@ a:hover {
   float:left;
 }
 
+.product #rating_img {
+  margin:0px;
+  display:inline;
+}
+.product #rating_img img {
+  margin:0px;
+  padiing: 0px;
+}
+
 .product img {
   display:inline;
   margin:5px;

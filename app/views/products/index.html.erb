@@ -19,6 +19,11 @@
           </div>
             <%= number_to_currency(product.price) %>
           <br>
+          <% product.reviews.average(:rating).to_i.times do %>
+          <div id="rating_img">
+            <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+          </div>
+          <% end %>
             <% unless session[:user_id] && session[:user_id] == product.user_id %>
               <%= button_to "Add to Cart", order_items_path(:product_id => product.id)%>
             <% end %>
