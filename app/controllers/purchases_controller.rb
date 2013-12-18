@@ -1,9 +1,12 @@
 class PurchasesController < ApplicationController
+
   def new
     @purchase = Purchase.new
   end
 
   def show
+    @purchase = Purchase.find(params[:id])
+    @order
   end
 
   def create
