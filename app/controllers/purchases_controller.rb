@@ -8,34 +8,24 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
+    # @product = Product.find(params[:product_id])
+    @order_item = OrderItem.find_by(product_id: @product.id, order_id: session[:order_id])
 
-    respond_to do |format|
-      if @purchase.save
+    if @purchase.save
+      @product.stock -= @order_item.quantity
 
-        # Don't know if this code works yet:
-        # Decreases product stock by x (for each product, find..., decrease...)
-        # unless @product.stock < 1
-        #   @product.stock -= 1
-        # end
+      current_order.status = "Paid"
+      # Empties cart
+      session[:order_id] = nil
 
-        # Sets order status to paid
-        current_order.status = "Paid"
-
-        # Empties cart
-        session[:order_id] = nil
-
-        format.html do
-          redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!' 
-        end
-
-      else
-        format.html { render action: 'new' }
-      end
+      redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!'
+    else
+      redirect_to purchase_path(@purchase.id), notice: 'Your order was not completed. Please try again!'
     end
   end
 
   private
   def purchase_params
-    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cvv, :zipcode, :expiration_month, :expiration_year)
+    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cvv, :zipcode, :expiration_month, :expiration_year, :order_id)
   end
 end
