@@ -10,25 +10,23 @@
   </thead>
 
   <tbody>
-    <% total = 0 %>
     <% @order.products.each do |product| %>
     <tr>
         <td><%= link_to "#{product.name}", product_path(product) %></td>
-        <td><%= number_to_currency(product.price) %>
+        <td><%= number_to_currency(product.price) %></td>
         <% @order_item = OrderItem.find_by(product_id: product.id, order_id: current_order.id) %>
-        <%= @order_item.quantity.to_i %>
         <td><%= form_for(@order_item) do |f| %>
           <%= f.text_field  :quantity, :value => @order_item.quantity.to_i %>
           <%= f.submit('Update qty') %>
           <% end %>
         <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
-        <% total += product.price * @order_item.quantity %>
+        <% @total += product.price * @order_item.quantity %>
     </tr>
     <% end %> 
   </tbody>
  </table>
 </br>
-Order Total: <%= number_to_currency(total) %>
+Order Total: <%= number_to_currency(@total) %>
 
 <br><br>
 
