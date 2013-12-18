@@ -19,6 +19,7 @@ class PurchasesController < ApplicationController
         order_item.product.save
       end
       current_order.status = "Paid"
+      current_order.save
       session[:order_id] = nil
 
       redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!'
