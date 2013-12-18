@@ -16,7 +16,7 @@ class OrderItemsController < ApplicationController
       if session[:order_id]
         @order = Order.find(session[:order_id])
       else
-        @order = Order.create
+        @order = Order.create(user_id: session[:user_id])
         session[:order_id] = @order.id
       end
       add_item_to_cart
