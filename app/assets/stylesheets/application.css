@@ -85,7 +85,8 @@ a:hover {
 
 .product #rating_img {
   margin:0px;
-  display:inline;
+  display:block;
+  height:30px;
 }
 .product #rating_img img {
   margin:0px;

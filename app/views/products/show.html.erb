@@ -13,13 +13,16 @@
 
   <div class="product_details">
     <h1><%= @product.name %></h1>
-    <% if !@product.reviews.nil? %>
-      <% @product.reviews.average(:rating).to_i.times do %>
-        <%= image_tag "sloth_star.jpeg",size:"25x25" %>
-      <% end %>
+    
+    <strong>Average Rating: </strong>
+    <% if @product.reviews.empty? %>
+       <em><%= "Not Rated" %></em>   
     <% else %>
-        <em><%= "Not Rated" %></em>
+       <% @product.reviews.average(:rating).to_i.times do %>
+       <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+      <% end %>
     <% end %>
+    
     <p>
       <strong>Sold By:</strong>
       <% @user = User.find(@product.user_id) %>

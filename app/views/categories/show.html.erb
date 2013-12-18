@@ -15,6 +15,17 @@
           </div>
           <%= number_to_currency(product.price) %>
           <br>
+
+          <div id="rating_img">
+            <% if product.reviews.empty? %>
+              <em><%= "Not Rated" %></em>   
+            <% else %>
+              <% product.reviews.average(:rating).to_i.times do %>
+                <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+              <% end %>
+            <% end %>
+          </div>
+          
             <% unless session[:user_id] && session[:user_id] == product.user_id %>
               <%= button_to "Add to Cart", order_items_path(:product_id => product.id)%>
             <% end %>
