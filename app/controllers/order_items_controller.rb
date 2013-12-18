@@ -35,6 +35,18 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def update
+    if @order_item.update(order_item_params)
+      redirect_to order_path(@order_item.order.id)
+    else
+      render order_path(@order_item.order.id) 
+    end
+  end
+
+  # def check_stock
+
+  # end
+
   def remove_item
     @order_item = OrderItem.find_by(order_id: current_order.id, product_id: params[:product_id])
     @order_item.destroy
