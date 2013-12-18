@@ -22,6 +22,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/*Header*/
+#user_nav {
+  text-align: right;
+  font-size: 15px;
+}
+
 #header {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -30,6 +36,13 @@ a:hover {
   text-align: center;
 }
 
+#slogan {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/*Content*/
 #columns {
   background: LightGrey;
   min-height: 900px;
@@ -43,28 +56,55 @@ a:hover {
   min-height: 900px;
 }
 
+/*Side Navigation*/
 #nav {
   float: left;
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 1em;
+  text-align: left;
   width: 16em;
 }
 
-#user_nav {
-  text-align: right;
+#side_nav !important {
+  padding-left: -40px;
+}
+
+#dropdown, #categories_dropdown {
+  display:none
+}
+
+/*Products Gallery*/
+.product {
+  margin:5px;
+  padding: 5px;
+  height:auto;
+  width:auto;
+  float:left;
+}
+
+.product img {
+  display:inline;
+  margin:5px;
+  border:1px solid #ffffff;
+}
+
+.product a:hover img {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+#product_description {
+  vertical-align: top;
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 25px;
   font-size: 15px;
 }
 
+/*Other Pages*/
 #header td {
   vertical-align: bottom;
   padding-right: 15px;
-}
-
-#slogan {
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 15px;
 }
 
 .title {
@@ -83,26 +123,4 @@ a:hover {
 
 #my_products {
   width: 50%;
-}
-
-.product {
-  margin:5px;
-  padding: 5px;
-  height:auto;
-  width:auto;
-  float:left;
-}
-
-.product img {
-  display:inline;
-  margin:5px;
-  border:1px solid #ffffff;
-}
-
-#product_description {
-  vertical-align: top;
-  padding-top: 10px;
-  padding-left: 10px;
-  line-height: 25px;
-  font-size: 15px;
 }
