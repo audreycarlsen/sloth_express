@@ -16,6 +16,9 @@ class PurchasesController < ApplicationController
     if @purchase.save
       @order_items.each do |order_item|
         order_item.product.stock -= order_item.quantity
+        if order_item.product.stock == 0
+          order_item.product.update(item_status: "retired")
+        end
         order_item.product.save
       end
       current_order.status = "Paid"
