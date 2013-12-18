@@ -1,4 +1,6 @@
 class Purchase < ActiveRecord::Base
+  belongs_to :order
+
   validates :email, presence: true, format: {with: /\w+@\w+\.\w+/i}
   validates :address, presence: true
   validates :name, presence: true

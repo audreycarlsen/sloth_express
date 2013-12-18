@@ -1,6 +1,12 @@
 <h1>Order Confirmation</h1>
 
-<%= Time.now.strftime("Placed on %m/%d/%Y at %I:%M %p") %>.
+Order status: <%= @purchase.order.status %> <br><br>
 
-<!-- THIS ISN'T WORKINGGGGG -->
-Placed on <%= @purchase.created_at %>.
+<%= @purchase.created_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %>
+
+<% @purchase.order.products.each do |product| %>
+  <%= link_to "#{product.name}", product_path(product) %>
+  <%= number_to_currency(product.price) %>
+  <% @order_item = OrderItem.find_by(product_id: product.id, order_id: @purchase.order.id) %>
+  <%= @order_item.quantity.to_i %>
+<% end %>
