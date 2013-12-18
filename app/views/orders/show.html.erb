@@ -17,7 +17,6 @@
         <td><%= link_to "#{product.name}", product_path(product) %></td>
         <td><%= number_to_currency(product.price) %>
         <td><%= qty = OrderItem.find_by(product_id: product.id, order_id: current_order.id).quantity.to_i %></td>
-        <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
     </tr>
     <% end %> 
   </tbody>
@@ -25,8 +24,6 @@
 </br>
 Order Total:
 
-</br>
- <p>link to checkout</p>
+<br><br>
 
- 
- 
+<%= link_to "Checkout", new_purchase_path %>

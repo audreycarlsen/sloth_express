@@ -11,25 +11,22 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html do
-          if current_user
-            redirect_to user_path(current_user.id), notice: 'Thank you for your order!' 
-          else
-            redirect_to root_path, notice: 'Thank you for your order!'
-          end
-        end
 
         # Don't know if this code works yet:
-        # Decreases product stock by 1
-        unless @product.stock < 1
-          @product.stock -= 1
-        end
+        # Decreases product stock by x (for each product, find..., decrease...)
+        # unless @product.stock < 1
+        #   @product.stock -= 1
+        # end
 
         # Sets order status to paid
         current_order.status = "Paid"
 
         # Empties cart
         session[:order_id] = nil
+
+        format.html do
+          redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!' 
+        end
 
       else
         format.html { render action: 'new' }
