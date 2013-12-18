@@ -21,8 +21,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: sloth_express_production
+  database: db/sloth_express_production.pg
   pool: 5
   username:
   password:
-  
