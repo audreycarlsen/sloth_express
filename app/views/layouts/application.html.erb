@@ -25,10 +25,10 @@
       <% end %>
       <%= link_to "Cart", order_path(current_order.id) %>
     <% else %>
-      <%= link_to '/home/empty' do %>
+      <%= link_to '/orders/empty' do %>
         <%= image_tag("/assets/cart.png") %>
       <% end %>
-      <%= link_to "Cart", '/home/empty' %>
+      <%= link_to "Cart", '/orders/empty' %>
     <% end %>
 </div>
 
