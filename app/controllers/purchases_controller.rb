@@ -6,7 +6,6 @@ class PurchasesController < ApplicationController
 
   def show
     @purchase = Purchase.find(params[:id])
-    @order
   end
 
   def create
@@ -15,17 +14,17 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       if @purchase.save
 
-        # Don't know if this code works yet:
-        # Decreases product stock by x (for each product, find..., decrease...)
-        # unless @product.stock < 1
-        #   @product.stock -= 1
-        # end
+        # # Don't know if this code works yet:
+        # # Decreases product stock by x (for each product, find..., decrease...)
+        # # unless @product.stock < 1
+        # #   @product.stock -= 1
+        # # end
 
-        # Sets order status to paid
-        current_order.status = "Paid"
+        # # Sets order status to paid
+        # current_order.status = "Paid"
 
-        # Empties cart
-        session[:order_id] = nil
+        # # Empties cart
+        # session[:order_id] = nil
 
         format.html do
           redirect_to purchase_path(@purchase.id), notice: 'Thank you for your order!' 
@@ -39,6 +38,6 @@ class PurchasesController < ApplicationController
 
   private
   def purchase_params
-    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cvv, :zipcode, :expiration_month, :expiration_year)
+    params.require(:purchase).permit(:email, :address, :name, :cc_number, :cvv, :zipcode, :expiration_month, :expiration_year, :order_id)
   end
 end
