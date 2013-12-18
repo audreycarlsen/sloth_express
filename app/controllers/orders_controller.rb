@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
   def update
   end
 
-
   private
 
   def set_order
@@ -34,6 +33,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:status, :user_id, :products => {})
+  end
+
+  def subtotal
   end
 
 
