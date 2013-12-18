@@ -6,7 +6,8 @@
   <td id="my_products">
     <h2><%= @user.username %>'s Products</h2>
     <% if @user.id == session[:user_id] %>
-      <%= link_to 'Create New Product', new_product_path %>
+      <%= link_to 'Create New Product', new_product_path %><br>
+      <%= link_to 'Create New Category', new_category_path %>
     <% end %>
     <br><br>
 
@@ -16,7 +17,7 @@
         <td>
           <div>
             <% if product.photo == "" %>
-              <%= image_tag("/assets/sloth_default.png") %> 
+              <%= image_tag("sloth_default.png") %> 
             <% else %>
               <%= image_tag(product.photo, width: '150') %> 
             <% end %>
