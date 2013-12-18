@@ -25,15 +25,32 @@ class OrderItemsController < ApplicationController
 
   def add_item_to_cart
     @product = Product.find(params[:product_id])
-    @order_item = OrderItem.new 
-    @order_item.product = @product
-    @order_item.order = @order
+    @order_item = OrderItem.find_by(product_id: @product.id, order_id: session[:order_id])
+    if @order_item
+      @order_item.quantity += 1
+    else
+      @order_item = OrderItem.new 
+      @order_item.product = @product
+      @order_item.order = @order
+    end
 
     if @order_item.save
       redirect_to order_path(@order)
     else
       render :new
     end
+  end
+
+  def update
+    if do_we_have_enough? && @order_item.update(order_item_params)
+      redirect_to order_path(@order_item.order.id) and return
+    else
+      redirect_to order_path(@order_item.order.id), :notice => "Sorry, we only have #{@order_item.product.stock}." and return
+    end
+  end
+
+  def do_we_have_enough?
+    params[:order_item][:quantity].to_i <= @order_item.product.stock
   end
 
   def remove_item
@@ -43,7 +60,8 @@ class OrderItemsController < ApplicationController
   end
 
 
-private
+  private
+
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
