@@ -8,9 +8,9 @@
   <% @products.each do |product| %>
   <div class="product">
      <% if product.photo == "" %>
-       <%= image_tag("/assets/sloth_default.png", size: '150x150') %> 
+       <%= link_to image_tag("/assets/sloth_default.png", size: '150x150'), product %> 
      <% else %>
-       <%= image_tag(product.photo, size: '150x150') %> 
+       <%= link_to image_tag(product.photo, size: '150x150'), product %> 
      <% end %>
   <div class="product_description">
     <div class="title">

@@ -43,39 +43,35 @@
 
 <div id= "columns">
   <div id="nav">
-  <%= form_tag search_products_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, nil, placeholder: "Sloths" %>
-    <%= submit_tag "Search" %>
-  </p>
-  <% end %>
-
-  <ul>
-    <% if current_user %>
-    <li>
-      <%= link_to "My Account", user_path(session[:user_id]) %>
-    <% else %>
-      <%= link_to "My Account", log_in_path %>
+    <%= form_tag search_products_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, nil, placeholder: "Sloths" %>
+      <%= submit_tag "Search" %>
+    </p>
     <% end %>
-    </li>
-    <br><br>
-    <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
 
-        <ul id="dropdown" style="display:none">
-          <li><%= link_to "All Products", products_path %> </li>
-          <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
-
-            <ul id="categories_dropdown" style="display:none">
-              <% Category.all.each do |category| %>
-              <li><%= link_to "#{category.name}", category %></li> 
-              <% end %>
-            </ul></li>
-            
+    <ul id="side_nav">
+      <% if current_user %>
+      <li>
+        <%= link_to "My Account", user_path(session[:user_id]) %>
+      <% else %>
+        <%= link_to "My Account", log_in_path %>
+      <% end %>
+      </li>
+      <br>
+      <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
+          <ul id="dropdown">
+            <li><%= link_to "All Products", products_path %> </li>
+            <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
+              <ul id="categories_dropdown">
+                <% Category.all.each do |category| %>
+                <li><%= link_to "#{category.name}", category %></li> 
+                <% end %>
+              </ul>
+            </li>
             <li><%= link_to "By Vendors", vendors_path %></li> 
-        </ul>
- 
-    </ul>
-   
+          </ul>
+      </ul>
   </div>
 
   <div id= "main">
