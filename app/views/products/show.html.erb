@@ -2,59 +2,69 @@
   <h3> This item is no longer active </h3>
 <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-<p>
-  <strong>Sold By:</strong>
-  <% @user = User.find(@product.user_id) %>
-  <%= link_to "#{@user.username}", user_path(@user) %>
-</p>
+<div class="box">
+  <div class="image">
+    <% if @product.photo == "" %>
+      <%= image_tag("/assets/sloth_default.png", size: '150x150') %> 
+    <% else %>
+      <%= image_tag(@product.photo, size: '150x150') %> 
+    <% end %>
+  </div>
+
+  <div class="product_details">
+    <h1><%= @product.name %></h1>
+    
+    <strong>Average Rating: </strong>
+    <% if @product.reviews.empty? %>
+       <em><%= "Not Rated" %></em>   
+    <% else %>
+       <% @product.reviews.average(:rating).to_i.times do %>
+       <%= image_tag "sloth_star.jpeg",size:"25x25" %>
+      <% end %>
+    <% end %>
+    
+    <p>
+      <strong>Sold By:</strong>
+      <% @user = User.find(@product.user_id) %>
+      <%= link_to "#{@user.username}", user_path(@user) %>
+    </p>
+    
+    <p>
+      <strong>Price:</strong>
+      <%= number_to_currency(@product.price) %>
+    </p>
+
+    <p>
+      <% if @product.stock > 0 %>
+        In stock!
+      <% else %>
+        Out of stock
+      <% end %>
+    </p>
+
+    <% unless session[:user_id] && session[:user_id] == @product.user_id %>
+      <%= button_to "Add to Cart", order_items_path(:product_id => @product.id)%>
+    <% end %>
+
+    <% if current_user && current_user.id == @product.user_id %>
+      <%= link_to 'Edit', edit_product_path(@product) %>
+    <% end %>
+    </br></br>
+    <% if current_user && current_user.id == @product.user_id %>
+      <% if @product.item_status == "active" %>
+        <%= button_to "Retire", retire_product_path(:product_id => @product.id), method: :post %>
+      <% else %>
+        <%= button_to "Activate", activate_product_path(:product_id => @product.id), method: :post %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <p>
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
-<p>
-  <strong>Price:</strong>
-  <%= number_to_currency(@product.price) %>
-</p>
-<p>
-  <strong>Photo:</strong><br>
-  <% if @product.photo == "" %>
-    <%= image_tag("sloth_default.png", height: '150') %> 
-  <% else %>
-    <%= image_tag(@product.photo, height: '150') %> 
-  <% end %>
-</p>
-<p>
-  <strong>Stock:</strong>
-  <%= @product.stock %>
-</p>
-
-<p>
-<strong>Categories:</strong><br>
-  <% @product.categories.each do |category| %>
-    <ul><li><%= link_to "#{category.name}", category_path(category) %></li></ul>
-  <% end %>
-</p>
-
-<% unless session[:user_id] && session[:user_id] == @product.user_id %>
-  <%= button_to "Add to Cart", order_items_path(:product_id => @product.id)%>
-<% end %>
-
-<% if current_user && current_user.id == @product.user_id %>
-  <%= link_to 'Edit', edit_product_path(@product) %>
-<% end %>
-
-<% if current_user && current_user.id == @product.user_id %>
-  <% if @product.item_status == "active" %>
-    <%= button_to "Retire", retire_product_path(:product_id => @product.id), method: :post %>
-  <% else %>
-    <%= button_to "Activate", activate_product_path(:product_id => @product.id), method: :post %>
-  <% end %>
-<% end %>
-
+</br>
 <% unless current_user && current_user.id == @product.user_id %>
 <p><a href="#review_form" onclick="toggle_visibility('review_form');">Write a Product Review</a></p>
 
@@ -96,6 +106,7 @@
   <% end %>
 <% end %>
 
+</br></br>
 <div class="review">
   <% @product.reviews.each do |review| %>
     <div class="review">

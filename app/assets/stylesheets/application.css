@@ -83,6 +83,16 @@ a:hover {
   float:left;
 }
 
+.product #rating_img {
+  margin:0px;
+  display:block;
+  height:30px;
+}
+.product #rating_img img {
+  margin:0px;
+  padiing: 0px;
+}
+
 .product img {
   display:inline;
   margin:5px;
@@ -123,4 +133,24 @@ a:hover {
 
 #my_products {
   width: 50%;
+}
+
+/*Product Show Page*/
+.box {
+  width: 500px;
+  vertical-align: top;
+  padding-left: 10px;
+  display: inline-block;
+  height: 220px;
+}
+.image {
+  padding: 30px 10px 5px 10px;
+  float: left;
+  width: 200px;
+  height: 100%;
+}
+
+.product_details {
+  margin-left:20px;
+  padding-left: 10px;
 }
