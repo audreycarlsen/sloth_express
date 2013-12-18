@@ -1,3 +1,4 @@
+
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -36,8 +37,14 @@
 
 <% if current_user && current_user.id == @product.user_id %>
   <%= link_to 'Edit', edit_product_path(@product) %>
-  |
 <% end %>
+
+<% if current_user && current_user.id == @product.user_id %>
+  <% if @product[:status] == "active" %>
+    <%= button_to "Retire", retire_product_path(:product_id => @product.id), method: :post %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Back', products_path %>
 
 <% unless current_user && current_user.id == @product.user_id %>
