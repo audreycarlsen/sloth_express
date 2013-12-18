@@ -18,7 +18,7 @@
         <td><%= form_for(@order_item) do |f| %>
           <%= f.text_field  :quantity, :value => @order_item.quantity.to_i %>
           <%= f.submit('Update qty') %>
-          <% end %></td>
+          <% end %>
         <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
         <% @total += product.price * @order_item.quantity %>
     </tr>
