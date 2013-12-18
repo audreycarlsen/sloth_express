@@ -1,7 +1,8 @@
 <h1>Sloth Marketplace</h1>
 
 <% if current_user %>
-  <%= link_to 'Create New Product', new_product_path %>
+  <%= link_to 'Create New Product', new_product_path %><br>
+  <%= link_to 'Create New Category', new_category_path %>
 <% end %>
 <br><br>
 
@@ -9,7 +10,7 @@
   <div class="product">
      <% if product.item_status == "active" %>
        <% if product.photo == "" %>
-         <%= link_to image_tag("/assets/sloth_default.png", size: '150x150'), product %> 
+         <%= link_to image_tag("sloth_default.png", size: '150x150'), product %> 
        <% else %>
          <%= link_to image_tag(product.photo, size: '150x150'), product %> 
        <% end %>
