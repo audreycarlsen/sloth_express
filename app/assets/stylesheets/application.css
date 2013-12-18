@@ -1,5 +1,11 @@
 body {
   font-family: Helvetica;
+  height:100%;
+  min-height: 900px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -16,6 +22,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/*Header*/
+#user_nav {
+  text-align: right;
+  font-size: 15px;
+}
+
 #header {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -24,8 +36,16 @@ a:hover {
   text-align: center;
 }
 
+#slogan {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/*Content*/
 #columns {
   background: LightGrey;
+  min-height: 900px;
 }
 
 #main {
@@ -33,35 +53,44 @@ a:hover {
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
+  min-height: 900px;
 }
 
+/*Side Navigation*/
 #nav {
   float: left;
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 1em;
+  text-align: left;
   width: 16em;
 }
 
-#user_nav {
-  text-align: right;
-  font-size: 12px;
+#side_nav !important {
+  padding-left: -40px;
 }
 
-#header td {
-  vertical-align: bottom;
-  padding-right: 15px;
+#dropdown, #categories_dropdown {
+  display:none
 }
 
-#slogan {
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 15px;
+/*Products Gallery*/
+.product {
+  margin:5px;
+  padding: 5px;
+  height:auto;
+  width:auto;
+  float:left;
 }
 
-.title {
-  font-weight: bold;
-  font-size: 20px;
+.product img {
+  display:inline;
+  margin:5px;
+  border:1px solid #ffffff;
+}
+
+.product a:hover img {
+  box-shadow: 10px 10px 5px #888888;
 }
 
 #product_description {
@@ -70,6 +99,17 @@ a:hover {
   padding-left: 10px;
   line-height: 25px;
   font-size: 15px;
+}
+
+/*Other Pages*/
+#header td {
+  vertical-align: bottom;
+  padding-right: 15px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 #edit_destroy {

@@ -8,13 +8,19 @@ class OrderItemsController < ApplicationController
   
 
   def create
-    if session[:order_id]
-      @order = Order.find(session[:order_id])
+    @product = Product.find(params[:product_id])
+
+    if @product.stock < 1
+      redirect_to product_path(@product), notice: "This product is out of stock."
     else
-      @order = Order.create
-      session[:order_id] = @order.id
+      if session[:order_id]
+        @order = Order.find(session[:order_id])
+      else
+        @order = Order.create
+        session[:order_id] = @order.id
+      end
+      add_item_to_cart
     end
-    add_item_to_cart
   end
 
   def add_item_to_cart
