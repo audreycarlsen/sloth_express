@@ -86,6 +86,12 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product), notice: "Product succesfully retired!"
   end
 
+  def activate_product
+    set_product
+    @product.update(item_status: "active")
+    redirect_to product_path(@product), notice: "Product succesfully activated!"
+  end
+
   private
   def check_login
     if session[:user_id].nil?

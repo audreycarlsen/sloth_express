@@ -9,6 +9,7 @@ SlothExpress::Application.routes.draw do
     resources :reviews
   end
 
+  get "/orders/empty" => "orders#empty"
   resources :orders
   resources :categories
   resources :order_items
@@ -17,7 +18,6 @@ SlothExpress::Application.routes.draw do
   resources :purchases
   resources :categories
 
-  get "home/empty"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in"  => "sessions#new",     :as => "log_in"
   get "sign_up" => "users#new",        :as => "sign_up"
@@ -25,6 +25,7 @@ SlothExpress::Application.routes.draw do
 
   delete '/order_items/:id/remove_item/:product_id' => "order_items#remove_item", as: :remove_item
   post '/products/:id/retire_product/:product_id' => "products#retire_product", as: :retire_product
+  post '/products/:id/activate_product/:product_id' => "products#activate_product", as: :activate_product
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
