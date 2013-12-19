@@ -49,8 +49,8 @@
 <tr>
   <h2>My Sales</h2>
     <% OrderItem.joins(:product).where("products.user_id = ?", @user.id).each do |sale| %>
-      <p>Order # <%= sale.order_id%> <%= Product.find(sale.product_id).name%> Quantity: <%= sale.quantity%> Total: <%= Product.find(sale.product.id).price * sale.quantity) %> <br></p>
-    <%end%>
+      <p>Order # <%= sale.order_id%> <%= Product.find(sale.product_id).name%> Quantity: <%= sale.quantity%> Total: <%= number_to_currency(Product.find(sale.product.id).price * sale.quantity) %> <br></p>
+    <% end %>
 </tr>
 
 </table>

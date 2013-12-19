@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
     belongs_to :user
     has_one :purchase
 
+  #We blame Stand for this.
   # validate :order_item_quantity_cannot_be_greater_than_product_stock
   
   # def order_item_quantity_cannot_be_greater_than_product_stock
