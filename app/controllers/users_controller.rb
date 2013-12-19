@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :order]
 
   # force_ssl
 
@@ -8,16 +8,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @sales_to_show = case params[:sales_filter].to_i
-                     when 2
-                       current_user.sales_by_status(:paid)
-                     when 3
-                       current_user.sales_by_status(:completed)
-                     when 4
-                       current_user.sales_by_status(:cancelled)
-                     else
-                       current_user.sales_but_not_pending
-                     end
+    if current_user
+      @sales_to_show = case params[:sales_filter].to_i
+                       when 2
+                         current_user.sales_by_status("paid")
+                       when 3
+                         current_user.sales_by_status("shipped")
+                       when 4
+                         current_user.sales_by_status("cancelled")
+                       else
+                         current_user.sales_but_not_pending
+                       end
+    end
   end
 
   def new
@@ -25,6 +27,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def order
+    @order = Order.where(order_id: session[:order_id])
+    @purchase = Purchase.find(params[:order_id])
+    # @@purchase.name
+    # @purchase.email
   end
 
   def create
@@ -68,6 +77,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :order_id)
   end
 end

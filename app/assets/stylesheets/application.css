@@ -33,13 +33,22 @@ a:hover {
   padding-bottom: 10px;
   border-bottom: 2px solid;
   color: black;
-  text-align: center;
+  display: block;
 }
 
 #slogan {
   font-family: Georgia, serif;
   font-style: italic;
   font-size: 15px;
+}
+
+#admin_tools {
+  position: absolute;
+  top: 130px;
+  right: 20px;
+  border: 1px dotted black;
+  padding: 10px;
+  background-color: white;
 }
 
 /*Content*/
@@ -68,10 +77,24 @@ a:hover {
 
 #side_nav {
   padding-left: -40px ! important;
+  padding-right: 18px;
 }
 
 #dropdown, #categories_dropdown {
   display:none
+}
+
+#fun_facts {
+  border: 2px dotted #3b3b3b;
+  background: #a5c7cf;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+}
+
+#fact_text {
+  font-size: 11pt;
+  line-height: 1.25em;
 }
 
 /*Products Gallery*/

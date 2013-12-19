@@ -1,11 +1,11 @@
 <% @sales_to_show.each do |sale| %>
   <% product_sold = Product.find(sale.product_id) %>
     <p>
-    Order # <%= sale.order_id%> 
-    <%= link_to "#{product_sold.name}", product_path(product_sold)%> 
-    Quantity: <%= sale.quantity%> 
-    Status: <%= Order.find(sale.order_id).status %>
-    Total: <%= number_to_currency(product_sold.price * sale.quantity) %> 
+    <%= link_to "Order # #{sale.order_id}", users_order_path(@user.id, sale.order_id)%> |
+    <%= link_to "#{product_sold.name}", product_path(product_sold)%> |
+    Quantity: <%= sale.quantity%> |
+    Status: <%= Order.find(sale.order_id).status %> |
+    Total: <%= number_to_currency(product_sold.price * sale.quantity) %> | 
     <br><%= Order.find(sale.order_id).updated_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %> <br></p>
     
     <div id="seller_buttons">
