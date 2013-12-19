@@ -1,13 +1,18 @@
 <div><h1><%= @user.username %></h1></div>
-<em><%= @user.email %></em>
+<% if @user.id == session[:user_id] %>
+  <em><%= @user.email %></em>
+<% end %>
 
 <table id="user_table">
 <tr>
   <td id="my_products">
-    <h2><%= @user.username %>'s Products</h2>
+
     <% if @user.id == session[:user_id] %>
+      <h2>My Products</h2>
       <%= link_to 'Create New Product', new_product_path %><br>
       <%= link_to 'Create New Category', new_category_path %>
+    <% else %>
+      <h2><%= @user.username %>'s Products</h2>
     <% end %>
     <br><br>
 
@@ -41,16 +46,11 @@
   </td>
   <% if @user.id == session[:user_id] %>
     <td>
-      <h2>Order History</h2>
-      This is where the order history will go.
-    </td>
-  <% end %>
-</tr>
-<tr>
-  <h2>My Sales</h2>
+      <h2>My Sales</h2>
     <% OrderItem.joins(:product).where("products.user_id = ?", @user.id).each do |sale| %>
       <p>Order # <%= sale.order_id%> <%= link_to "#{Product.find(sale.product_id).name}", product_path(Product.find(sale.product_id).name)%> Quantity: <%= sale.quantity%> Total: <%= number_to_currency(Product.find(sale.product.id).price * sale.quantity) %> <br></p>
     <%end%>
+    </td>
+  <% end %>
 </tr>
-
 </table>
