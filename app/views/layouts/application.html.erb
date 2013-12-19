@@ -50,28 +50,27 @@
     </p>
     <% end %>
 
-    <ul id="side_nav">
-      <li>
+    <div id="side_nav">
+      
         <% if current_user %>
         <%= link_to "My Account", user_path(session[:user_id]) %>
       <% else %>
         <%= link_to "My Account", log_in_path %>
       <% end %>
-      </li>
-      <br>
-      <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
-          <ul id="dropdown">
-            <li><%= link_to "All Products", products_path %> </li>
-            <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
-              <ul id="categories_dropdown">
-                <% Category.all.each do |category| %>
-                <li><%= link_to "#{category.name}", category %></li> 
-                <% end %>
-              </ul>
-            </li>
-            <li><%= link_to "By Vendors", vendors_path %></li> 
-          </ul>
-      </ul>
+     </br></br>
+      <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
+        <ul id="dropdown">
+          <li><%= link_to "All Products", products_path %> </li>
+          <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
+            <ul id="categories_dropdown">
+              <% Category.all.each do |category| %>
+              <li><%= link_to "#{category.name}", category %></li> 
+              <% end %>
+            </ul>
+          </li>
+          <li><%= link_to "By Vendors", vendors_path %></li> 
+        </ul>
+    </div>
       <br><br>
       
     <div id='fun_fact'>
