@@ -26,7 +26,8 @@ SlothExpress::Application.routes.draw do
   delete '/order_items/:id/remove_item/:product_id' => "order_items#remove_item", as: :remove_item
   post '/products/:id/retire_product/:product_id' => "products#retire_product", as: :retire_product
   post '/products/:id/activate_product/:product_id' => "products#activate_product", as: :activate_product
-
+  post '/users/:id/completed/' => "orders#completed", as: :completed
+  post '/users/:id/cancelled/' => "orders#cancelled", as: :cancelled
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -135,6 +135,10 @@ a:hover {
   width: 50%;
 }
 
+#seller_buttons {
+  display:inline-block;
+}
+
 /*Product Show Page*/
 .box {
   width: 500px;
