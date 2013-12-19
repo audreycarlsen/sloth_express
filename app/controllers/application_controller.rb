@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
     @current_order ||= Order.find(session[:order_id]) if session[:order_id]
   end
   helper_method :current_order
+
 end
