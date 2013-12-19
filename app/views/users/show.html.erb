@@ -1,6 +1,7 @@
 <div><h1><%= @user.username %></h1></div>
 <% if @user.id == session[:user_id] %>
-  <em><%= @user.email %></em>
+  <em><%= @user.email %></em><br><br>
+  <%= link_to 'Edit My Account', edit_user_path %>
 <% end %>
 
 <table id="user_table">

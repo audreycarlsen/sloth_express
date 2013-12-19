@@ -2,4 +2,9 @@ Hi there, and welcome to Sloth Express!
 
 SlothExpress is currently live on Heroku at: sloth-express.herokuapp.com
 
+All-powerful admin account:
+  username: Sloth King
+  email: sloth@sloth.com
+  password: 12345
+
 Happy slothing!
