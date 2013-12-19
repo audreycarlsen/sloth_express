@@ -50,27 +50,33 @@
     </p>
     <% end %>
 
-    <div id="side_nav">
-      <% if current_user %>
-      <p>
+    <ul id="side_nav">
+      <li>
+        <% if current_user %>
         <%= link_to "My Account", user_path(session[:user_id]) %>
       <% else %>
         <%= link_to "My Account", log_in_path %>
       <% end %>
-      </p>
-      <p> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
+      </li>
+      <br>
+      <li> <a href="#" onclick="toggle_visibility('dropdown');">Browse Marketplace</a>
           <ul id="dropdown">
-            <li><%= link_to "All Products", products_path %> </li></br>
+            <li><%= link_to "All Products", products_path %> </li>
             <li><a href="#" onclick="toggle_visibility('categories_dropdown');">By Category</a>
               <ul id="categories_dropdown">
                 <% Category.all.each do |category| %>
-                <li><%= link_to "#{category.name}", category %></li>
+                <li><%= link_to "#{category.name}", category %></li> 
                 <% end %>
               </ul>
-            </li></br>
-            <li><%= link_to "By Vendors", vendors_path %></li></br>
+            </li>
+            <li><%= link_to "By Vendors", vendors_path %></li> 
           </ul>
-      </p>
+      </ul>
+      <br><br>
+      
+    <div id='fun_fact'>
+      <p><strong>Did you know?</p></strong>
+      Sloths spend most of their time sleeping and eating in the tropical rainforests of South and Central America.
     </div>
   </div>
 
