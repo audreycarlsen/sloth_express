@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       assign_cart_to_user
-      redirect_to products_path, :notice => "Welcome, Sloth Cadet #{user.username}! Your mission, should you choose to accept it, is to find the best in sloth themed products and values!"
+      unless current_user.username == "Sloth King"
+        redirect_to products_path, :notice => "Welcome, Sloth Cadet #{user.username}! Your mission, should you choose to accept it, is to find the best in sloth themed products and values!"
+      else
+        redirect_to products_path, :notice => "All hail the Sloth King!"
+      end
     else
       flash.now.alert = "Invalid email or password"
       render "new"

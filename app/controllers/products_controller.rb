@@ -18,6 +18,10 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def admin_view
+    @products = Product.all
+  end
+
   def create
     @product = Product.new(product_params)
 

@@ -1,25 +1,16 @@
-<h1>Categories</h1>
+<!-- For the Sloth King's eyes only -->
 
-<table>
-  <thead>
+<% if current_user && current_user.username == "Sloth King" %>
+  <h1>Categories</h1>
+
+  <table>
+  <% @categories.each do |category| %>
     <tr>
-      <th></th>
+      <td><%= link_to "#{category.name}", category %></td>
+      <td>[<%= link_to 'Edit', edit_category_path(category) %>]</td>
+      <td>[<%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to "#{category.name}", category %></td>
-        <% if current_user %>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+  <% end %>
+<% else %>
+  You do not have permission to view this page.
+<% end %>
