@@ -54,7 +54,7 @@
       <% product_sold = Product.find(sale.product_id) %>
       <p>
         <%= link_to "Order # #{sale.order_id}", users_order_path(@user.id, sale.order_id)%> 
-        <%= link_to "#{product_sold.name}", product_path(product_sold.name)%> 
+        <%= link_to "#{product_sold.name}", product_path(product_sold)%> 
         Quantity: <%= sale.quantity%> 
         Status: <%= Order.find(sale.order_id).status %>
         Total: <%= number_to_currency(product_sold.price * sale.quantity) %> 
