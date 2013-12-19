@@ -8,6 +8,16 @@ class UsersController < ApplicationController
   end
 
   def show
+    @sales_to_show = case params[:sales_filter].to_i
+                     when 2
+                       current_user.sales_by_status(:paid)
+                     when 3
+                       current_user.sales_by_status(:completed)
+                     when 4
+                       current_user.sales_by_status(:cancelled)
+                     else
+                       current_user.sales_but_not_pending
+                     end
   end
 
   def new
@@ -53,11 +63,11 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end

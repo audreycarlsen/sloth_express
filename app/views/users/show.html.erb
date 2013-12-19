@@ -47,26 +47,19 @@
   </td>
   <% if @user.id == session[:user_id] %>
   <td>
-  <h2>My Sales</h2>
-  <% my_sales = OrderItem.joins(:product).where("products.user_id = ?", @user.id) %>
-    <% @array_of_paid_items = my_sales.select("order.status = ?", "Paid" ) %>
-    <% my_sales.each do |sale| %>
-      <% product_sold = Product.find(sale.product_id) %>
-      <p>
-        Order # <%= sale.order_id%> 
-        <%= link_to "#{product_sold.name}", product_path(product_sold.name)%> 
-        Quantity: <%= sale.quantity%> 
-        Status: <%= Order.find(sale.order_id).status %>
-        Total: <%= number_to_currency(product_sold.price * sale.quantity) %> 
-      <br><%= Order.find(sale.order_id).updated_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %> <br></p>
-        <div id="seller_buttons">
-        <%= button_to "Mark as Shipped", completed_path(sale.order_id), method: :post %> 
-        <%= button_to "Cancel Order", cancelled_path(sale.order_id), method: :post  %>
-       
-      </div>
+    <h2>My Sales</h2>
+      <form action="/users/<%= current_user.id %>" method="get">
+        <select name="sales_filter">
+          <option value=1>Show All Orders</option>
+          <option value=2>Show Paid Orders</option>
+          <option value=3>Show Shipped Orders</option>
+          <option value=4>Cancelled Orders</option>
+        </select>
+        <input type="submit" value="Onward, to glory!">
+      </form>
+      <%= render 'sales' %>
       <br>
     </p>
-    <%end%>
     </td>
   <% end %>
 </tr>
