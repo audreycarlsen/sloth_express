@@ -53,7 +53,7 @@
     <% my_sales.each do |sale| %>
       <% product_sold = Product.find(sale.product_id) %>
       <p>
-        <%= link_to "Order # #{sale.order_id}", user_order_path%> 
+        <%= link_to "Order # #{sale.order_id}", users_order_path(@user.id, sale.order_id)%> 
         <%= link_to "#{product_sold.name}", product_path(product_sold.name)%> 
         Quantity: <%= sale.quantity%> 
         Status: <%= Order.find(sale.order_id).status %>
