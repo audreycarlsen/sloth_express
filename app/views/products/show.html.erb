@@ -5,7 +5,7 @@
 <div class="box">
   <div class="image">
     <% if @product.photo == "" %>
-      <%= image_tag("/assets/sloth_default.png", size: '150x150') %> 
+      <%= image_tag("sloth_default.png", size: '150x150') %> 
     <% else %>
       <%= image_tag(@product.photo, size: '150x150') %> 
     <% end %>

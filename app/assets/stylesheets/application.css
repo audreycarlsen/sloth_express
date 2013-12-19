@@ -84,7 +84,7 @@ a:hover {
   display:none
 }
 
-#fun_facts {
+#fun_fact{
   border: 2px dotted #3b3b3b;
   background: #a5c7cf;
   padding-left: 12px;
@@ -92,7 +92,16 @@ a:hover {
   padding-bottom: 12px;
 }
 
-#fact_text {
+#featured_product {
+  border: 2px dotted #3b3b3b;
+  background: #fedcaf;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.filler_text {
   font-size: 11pt;
   line-height: 1.25em;
 }
