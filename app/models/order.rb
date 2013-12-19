@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
 
   validate :order_items, presence: true
 
+  #We blame Stand for this.
   # validate :order_item_quantity_cannot_be_greater_than_product_stock
   
   # def order_item_quantity_cannot_be_greater_than_product_stock
