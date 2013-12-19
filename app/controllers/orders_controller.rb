@@ -26,6 +26,20 @@ class OrdersController < ApplicationController
   def update
   end
 
+  def completed
+    set_order
+    @order.update(status: "completed")
+    @order.save
+    redirect_to user_path(current_user)
+  end
+
+  def cancelled
+    set_order
+    @order.update(status: "cancelled")
+    @order.save
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def set_order
