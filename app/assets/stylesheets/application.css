@@ -33,13 +33,22 @@ a:hover {
   padding-bottom: 10px;
   border-bottom: 2px solid;
   color: black;
-  text-align: center;
+  display: block;
 }
 
 #slogan {
   font-family: Georgia, serif;
   font-style: italic;
   font-size: 15px;
+}
+
+#admin_tools {
+  position: absolute;
+  top: 130px;
+  right: 20px;
+  border: 1px dotted black;
+  padding: 10px;
+  background-color: white;
 }
 
 /*Content*/
