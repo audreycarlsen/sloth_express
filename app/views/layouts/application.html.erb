@@ -58,8 +58,6 @@
       <% end %>
     </div>
 
-
-
     <div id= "columns">
       <div id="nav">
         <%= form_tag search_products_path, :method => 'get' do %>
@@ -93,10 +91,20 @@
 
           <br><br>
 
-          <div id="fun_facts">
+          <div id="fun_fact">
             <p><strong>Did you know?</strong></p>
-            <div id="fact_text">
+            <div class="filler_text">
               <%= fun_facts %> 
+            </div>
+          </div>
+
+          <br>
+
+          <div id="featured_product">
+            <p><strong>Featured Product</strong></p>
+            <div class="filler_text">
+              <p><%= link_to "#{@featured_product.name}", @featured_product %></p>
+              <p><%= link_to image_tag("#{@featured_product.photo}", width: 180), @featured_product %></p>
             </div>
           </div>
         </div>

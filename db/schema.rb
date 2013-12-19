@@ -11,16 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217193426) do
+ActiveRecord::Schema.define(version: 20131219223201) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  # orders = all completed order ids
-  # 
 
   create_table "order_items", force: true do |t|
     t.integer  "order_id"
@@ -48,7 +45,7 @@ ActiveRecord::Schema.define(version: 20131217193426) do
     t.string   "name"
     t.text     "description"
     t.float    "price"
-    t.string   "photo"
+    t.string   "photo",       default: "sloth_default.png"
     t.integer  "user_id"
     t.integer  "stock"
     t.datetime "created_at"
