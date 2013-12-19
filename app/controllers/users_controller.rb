@@ -17,6 +17,12 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def orders
+    # @purchase = Purchases.find(params[:order_id])
+    # @@purchase.name
+    # @purchase.email
+  end
+
   def create
     @user = User.new(user_params)
 

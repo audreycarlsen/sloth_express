@@ -1,13 +1,19 @@
 <div><h1><%= @user.username %></h1></div>
-<em><%= @user.email %></em>
+<% if @user.id == session[:user_id] %>
+  <em><%= @user.email %></em><br><br>
+  <%= link_to 'Edit My Account', edit_user_path %>
+<% end %>
 
 <table id="user_table">
 <tr>
   <td id="my_products">
-    <h2><%= @user.username %>'s Products</h2>
+
     <% if @user.id == session[:user_id] %>
+      <h2>My Products</h2>
       <%= link_to 'Create New Product', new_product_path %><br>
       <%= link_to 'Create New Category', new_category_path %>
+    <% else %>
+      <h2><%= @user.username %>'s Products</h2>
     <% end %>
     <br><br>
 
@@ -40,18 +46,28 @@
     <% end %>
   </td>
   <% if @user.id == session[:user_id] %>
-    <td>
-      <h2>Order History</h2>
-      This is where the order history will go.
+  <td>
+  <h2>My Sales</h2>
+  <% my_sales = OrderItem.joins(:product).where("products.user_id = ?", @user.id) %>
+    <% @array_of_paid_items = my_sales.select("order.status = ?", "Paid" ) %>
+    <% my_sales.each do |sale| %>
+      <% product_sold = Product.find(sale.product_id) %>
+      <p>
+        Order # <%= sale.order_id%> 
+        <%= link_to "#{product_sold.name}", product_path(product_sold.name)%> 
+        Quantity: <%= sale.quantity%> 
+        Status: <%= Order.find(sale.order_id).status %>
+        Total: <%= number_to_currency(product_sold.price * sale.quantity) %> 
+      <br><%= Order.find(sale.order_id).updated_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %> <br></p>
+        <div id="seller_buttons">
+        <%= button_to "Mark as Shipped", completed_path(sale.order_id), method: :post %> 
+        <%= button_to "Cancel Order", cancelled_path(sale.order_id), method: :post  %>
+       
+      </div>
+      <br>
+    </p>
+    <%end%>
     </td>
   <% end %>
 </tr>
-<tr>
-  <h2>My Sales</h2>
-    <% OrderItem.joins(:product).where("products.user_id = ?", @user.id).each do |sale| %>
-    <%# OrderItem.select(:product.user_id == @user.id).each do |sale| %>
-      <p>Order # <%= sale.order_id%> <%= Product.find(sale.product_id).name%> Quantity: <%= sale.quantity%><br></p>
-    <%end%>
-</tr>
-
 </table>
