@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20131217193426) do
     t.datetime "updated_at"
   end
 
+  # orders = all completed order ids
+  # 
+
   create_table "order_items", force: true do |t|
     t.integer  "order_id"
     t.integer  "product_id"

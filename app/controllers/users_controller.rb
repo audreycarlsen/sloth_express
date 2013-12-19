@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :order]
 
   # force_ssl
 
@@ -15,6 +15,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def order
+    @order = Order.where(order_id: session[:order_id])
+    @purchase = Purchase.find(params[:order_id])
+    # @@purchase.name
+    # @purchase.email
   end
 
   def create
@@ -58,6 +65,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :order_id)
     end
 end
