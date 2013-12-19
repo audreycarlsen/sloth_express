@@ -11,11 +11,12 @@
 
  <tbody>
 <% if @user.id == session[:user_id] %>
-  <tr><%= @purchase.name %></tr>
-  <tr><%= @purchase.email %></tr>
-  <tr><%= @purchase.address %></tr>
-  <tr><%= @purchase.cc_number %></tr>
-  </td>
+  <tr>
+  <td><%= @purchase.name %></td>
+  <td><%= @purchase.email %></td>
+  <td><%= @purchase.address %></td>
+  <td><%= @purchase.cc_number %></td>
+  </tr>
  </table>
 <% end %>
 
