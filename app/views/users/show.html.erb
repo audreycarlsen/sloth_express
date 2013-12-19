@@ -50,7 +50,12 @@
   <h2>My Sales</h2>
     <% OrderItem.joins(:product).where("products.user_id = ?", @user.id).each do |sale| %>
     <%# OrderItem.select(:product.user_id == @user.id).each do |sale| %>
-      <p>Order # <%= sale.order_id%> <%= link_to "#{Product.find(sale.product_id).name}", product_path(Product.find(sale.product_id).name)%> Quantity: <%= sale.quantity%><br></p>
+      <p>Order # <%= sale.order_id%> <%= link_to "#{Product.find(sale.product_id).name}", product_path(Product.find(sale.product_id).name)%> Quantity: <%= sale.quantity%> Status: <%= Order.find(sale.order_id).status %> 
+        <div id="seller_buttons">
+        <%= button_to "Mark as Shipped", completed_path(sale.order_id), method: :post %> 
+        <%= button_to "Cancel Order", cancelled_path(sale.order_id), method: :post  %>
+      </div>
+      <br></p>
     <%end%>
 </tr>
 
