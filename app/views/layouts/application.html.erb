@@ -39,7 +39,7 @@
             <%= link_to(image_tag("logo.png"), products_path, :title => "Take me home!")%>
           </td>
           <td id='slogan'>
-            "Made by sloths... for sloths!"
+            "Made by sloths, for sloths."
           </td>
         </tr>
       </table>
@@ -64,7 +64,7 @@
       <div id="nav">
         <%= form_tag search_products_path, :method => 'get' do %>
           <p>
-            <%= text_field_tag :search, nil, placeholder: "Sloths" %>
+            <%= text_field_tag :search, nil, placeholder: "I want to buy things!" %>
             <%= submit_tag "Search" %>
           </p>
         <% end %>
