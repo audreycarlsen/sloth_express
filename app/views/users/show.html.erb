@@ -48,8 +48,12 @@
 </tr>
 <tr>
   <h2>My Sales</h2>
-    <% OrderItem.joins(:product).where("products.user_id = ?", @user.id).each do |sale| %>
-      <p>Order # <%= sale.order_id%> <%= link_to "#{Product.find(sale.product_id).name}", product_path(Product.find(sale.product_id).name)%> Quantity: <%= sale.quantity%> Total: <%= number_to_currency(Product.find(sale.product.id).price * sale.quantity) %> <br></p>
+  <% my_sales = OrderItem.joins(:product).where("products.user_id = ?", @user.id) %>
+    <% @array_of_paid_items = my_sales.select("order.status = ?", "Paid" ) %>
+    <% my_sales.each do |sale| %>
+      <% product_sold = Product.find(sale.product_id) %>
+      <p>Order # <%= sale.order_id%> <%= link_to "#{product_sold.name}", product_path(product_sold.name)%> Quantity: <%= sale.quantity%> Total: <%= number_to_currency(product_sold.price * sale.quantity) %> Status: <%= Order.find(sale.order_id).status %>
+      <br><%= Order.find(sale.order_id).updated_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %> <br></p>
     <%end%>
 </tr>
 
