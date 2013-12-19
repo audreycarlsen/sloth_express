@@ -1,4 +1,21 @@
+<h3>Order Details</h3>
+<table>
+    <thead>
+      <tr>
+      <th>Buyer Name</th>
+      <th>Buyer Email</th>
+      <th>Buyer Address</th>
+      <th>Buyer payment info</th>
+    </tr>
+  </thead>
+
+ <tbody>
 <% if @user.id == session[:user_id] %>
-  <em><%= "#{@user.username}'s Orders" %></em><br><br>
+  <tr><%= @purchase.name %></tr>
+  <tr><%= @purchase.email %></tr>
+  <tr><%= @purchase.address %></tr>
+  <tr><%= @purchase.cc_number %></tr>
+  </td>
+ </table>
 <% end %>
 

@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def orders
-    # @purchase = Purchases.find(params[:order_id])
+  def order
+    @order = Order.where(order_id: session[:order_id])
+    @purchase = Purchase.find(params[:order_id])
     # @@purchase.name
     # @purchase.email
   end
@@ -64,6 +65,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :order_id)
     end
 end

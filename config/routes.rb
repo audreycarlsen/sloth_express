@@ -25,7 +25,7 @@ SlothExpress::Application.routes.draw do
   get "sign_up" => "users#new",        :as => "sign_up"
   get "vendors" => "users#vendors",    :as => "vendors"
   get "sloth_king" => "users#sloth_king"
-  get "users/:id/order" => "users#order"
+  get "users/:id/order/:order_id" => "users#order", :as "user_order"
 
   delete '/order_items/:id/remove_item/:product_id' => "order_items#remove_item", as: :remove_item
   post '/products/:id/retire_product/:product_id' => "products#retire_product", as: :retire_product
