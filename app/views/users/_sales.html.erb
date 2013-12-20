@@ -1,3 +1,4 @@
+<% total_rev = 0 %>
 <% @sales_to_show.each do |sale| %>
   <% product_sold = Product.find(sale.product_id) %>
     <p>
@@ -7,9 +8,15 @@
     Status: <%= Order.find(sale.order_id).status %> |
     Total: <%= number_to_currency(product_sold.price * sale.quantity) %> | 
     <br><%= Order.find(sale.order_id).updated_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %> <br></p>
-    
+    <% total_rev += product_sold.price * sale.quantity %>
     <div id="seller_buttons">
       <%= button_to "Mark as Shipped", completed_path(sale.order_id), method: :post %> 
       <%= button_to "Cancel Order", cancelled_path(sale.order_id), method: :post  %>
     </div>
-  <% end %>
+<% end %>
+<br>
+<br>
+Total Revenue: <%= number_to_currency(total_rev) %><br><br>
+Total Orders Paid: <%= current_user.sales_by_status("paid").count %><br><br>
+Total Orders Shipped: <%= current_user.sales_by_status("shipped").count %><br><br>
+Total Orders Cancelled: <%= current_user.sales_by_status("cancelled").count %>
