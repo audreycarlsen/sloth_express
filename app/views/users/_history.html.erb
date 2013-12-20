@@ -1,0 +1,31 @@
+<%orders = Order.where(:user_id => @user.id) %>
+<table>
+  <thead>
+    <tr>
+      <th>Order #</th>
+      <th>Items</th>
+      <th>Qty</th>
+      <th>Order Total</th>
+      <th>Date</th>
+      <th>Shipping Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% orders.each do | order | %>
+        <td><%= order.id %></td>
+          <% order.products.each do |product| %>
+            <td><%= link_to "#{product.name}", product_path(product) %></td>
+            <td><% order.order_items.each do |sale| %>
+                <%= sale.quantity %></td>
+              <td> <%= number_to_currency(product.price * sale.quantity) %>
+            <% end %>
+              </td>
+           <% end %>
+        <td><%= Purchase.find_by(:order_id => order.id).created_at.to_formatted_s(:short) %></td>
+        <td><%= Purchase.find_by(:order_id => order.id).address %></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>
