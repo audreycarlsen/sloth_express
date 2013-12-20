@@ -10,5 +10,3 @@ All-powerful admin account:
 Admin can view/edit/destroy users, products, and categories, and can view any vendor's sales.
 
 Happy slothing!
-
-*NOTE: Alignment on products page doesn't always work, even though we fixed it multiple times.
