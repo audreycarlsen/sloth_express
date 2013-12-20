@@ -51,7 +51,8 @@ class CategoriesController < ApplicationController
     end
   end
 
-private
+  private
+
   def set_category
     @category = Category.find(params[:id])
   end
@@ -65,5 +66,4 @@ private
       redirect_to new_session_path, :notice => "Please log in or create an account."
     end
   end
-  
 end
