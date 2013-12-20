@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def completed
     set_order
-    @order.update(status: "completed")
+    @order.update(status: "shipped")
     @order.save
     redirect_to user_path(current_user)
   end

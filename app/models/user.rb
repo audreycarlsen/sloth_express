@@ -14,4 +14,16 @@ class User < ActiveRecord::Base
       user.products.empty?
     end
   end
+
+  def sales
+    OrderItem.joins(:product).where("products.user_id = ?", id)
+  end
+
+  def sales_by_status(status)
+    OrderItem.joins(:product).joins(:order).where("products.user_id = ? AND orders.status = LOWER(?)", id, status.downcase)
+  end
+
+  def sales_but_not_pending
+    OrderItem.joins(:product).joins(:order).where("products.user_id = ? AND orders.status != LOWER(?)", id, "pending")
+  end
 end
