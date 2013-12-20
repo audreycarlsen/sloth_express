@@ -15,22 +15,16 @@ Order status: <%= @purchase.order.status %> <br><br>
     </tr>
   </thead>
 
-  <!-- Maybe put this logic in model... -->
-
   <tbody>
-    <% @purchase.order.products.each do |product| %>
+    <% @purchase.order.order_items.each do |order_item| %>
     <tr>
-      <td><%= link_to "#{product.name}", product_path(product) %></td>
-      <% @order_item = OrderItem.find_by(product_id: product.id, order_id: @purchase.order.id) %>
-      <td><%= @order_item.quantity.to_i %></td>
-      <% subtotal = product.price*@order_item.quantity.to_i %>
-      <td><%= number_to_currency(subtotal) %></td>
-      <% @total += subtotal %>
+      <td><%= link_to "#{order_item.product.name}", product_path(order_item.product) %></td>
+      <td><%= order_item.quantity.to_i %></td>
+      <td><%= number_to_currency(order_item.subtotal) %>
     </tr>
     <% end %> 
-
   </tbody>
 </table>
 
 <br>
-Total: <%= number_to_currency(@total) %>
+Total: <%= number_to_currency(@purchase.order.order_items.total) %>

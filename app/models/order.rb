@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   def cart_size
    order_items.sum(:quantity)
 
+    # Previous one line of code does everything the next six lines do, but better...
     # order_item_array = OrderItem.all.select { |order_item| order_item.order_id == id }
     # cart_size = 0
     # order_item_array.each do |order_item|
