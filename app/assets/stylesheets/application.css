@@ -65,6 +65,10 @@ a:hover {
   min-height: 900px;
 }
 
+#notice {
+  color: #b14b02;
+}
+
 /*Side Navigation*/
 #nav {
   float: left;
@@ -111,7 +115,7 @@ a:hover {
   margin:5px;
   padding: 5px;
   height:auto;
-  width:auto;
+  width:172px;
   float:left;
 }
 
