@@ -18,10 +18,8 @@ class UsersController < ApplicationController
   end
 
   def order
-    @order = Order.where(order_id: session[:order_id])
+    # @order = Order.where(order_id: session[:order_id])
     @purchase = Purchase.find(params[:order_id])
-    # @@purchase.name
-    # @purchase.email
   end
 
   def create
