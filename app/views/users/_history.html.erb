@@ -1,4 +1,4 @@
-<% orders = Order.where(:user_id => @user.id) %>
+<%orders = Order.where(:user_id => @user.id) %>
 <table>
   <thead>
     <tr>
@@ -10,22 +10,22 @@
       <th>Shipping Address</th>
     </tr>
   </thead>
-<% orders.each do | order | %>
+
   <tbody>
     <tr>
-      <td><%= order.id %></td>
-      <% order.products.each do |product| %>
-        <td><%= link_to "#{product.name}", product_path(product) %></td>
-          <td><% product.order_items.each do |sale| %>
-              <%= sale.quantity %></td>
-          <% end %>
-        <% @order_item = OrderItem.find_by(product_id: product.id, order_id: order.id) %>
-        <% @total  = product.price * @order_item.quantity.to_i %>
-        <td> <%= number_to_currency(@total) %></td>
-      <% end %>
-      <td><%= Purchase.find_by(:order_id => order.id).created_at.to_formatted_s(:short) %></td>
-      <td><%= Purchase.find_by(:order_id => order.id).address %></td>
-<% end %>
+      <% orders.each do | order | %>
+        <td><%= order.id %></td>
+          <% order.products.each do |product| %>
+            <td><%= link_to "#{product.name}", product_path(product) %></td>
+            <td><% order.order_items.each do |sale| %>
+                <%= sale.quantity %></td>
+              <td> <%= number_to_currency(product.price * sale.quantity) %>
+            <% end %>
+              </td>
+           <% end %>
+        <td><%= Purchase.find_by(:order_id => order.id).created_at.to_formatted_s(:short) %></td>
+        <td><%= Purchase.find_by(:order_id => order.id).address %></td>
     </tr>
+      <% end %>
   </tbody>
 </table>
