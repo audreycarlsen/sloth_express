@@ -21,7 +21,7 @@ class PurchasesController < ApplicationController
         end
         order_item.product.save
       end
-      current_order.status = "Paid"
+      current_order.status = "paid"
       current_order.save
       session[:order_id] = nil
 
