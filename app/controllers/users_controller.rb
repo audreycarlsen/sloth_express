@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def order
     # @order = Order.where(order_id: session[:order_id])
-    @purchase = Purchase.find(params[:order_id])
+    @purchase = Purchase.find(params[:order_id]) 
   end
 
   def create
