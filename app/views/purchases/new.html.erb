@@ -5,62 +5,62 @@
     <div id="error_messages">
       <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this order from being placed:</h2>
       <ul>
-      <% @purchase.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @purchase.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <p>
     <div class="field">
-    <%= f.label :email, "Email Address" %><br>
-    <%= f.text_field :email %>
-  </div>
-  </p>
-  <p>
-    <div class="field">
-    <%= f.label :address, "Mailing Address" %><br>
-    <%= f.text_field :address %>
-  </div>
-  </p>
-  <p>
-    <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  </p>
-  <p>
-    <div class="field">
-    <%= f.label :cc_number, "Credit Card Number" %><br>
-    <%= f.text_field :cc_number %>
-  </div>
-  </p>
-  <p>
-    <div class="field">
-    <%= f.label 'Expiration Date' %><br>
-    <%= select_month nil, {add_month_numbers: true}, {name: 'purchase[expiration_month]'} %>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: 'purchase[expiration_year]'} %>
+      <%= f.label :email, "Email Address" %><br>
+      <%= f.text_field :email %>
     </div>
   </p>
   <p>
     <div class="field">
-    <%= f.label :cvv, "Security Code (CVV)" %><br>
-    <%= f.text_field :cvv %>
+      <%= f.label :address, "Mailing Address" %><br>
+      <%= f.text_field :address %>
     </div>
   </p>
   <p>
     <div class="field">
-    <%= f.label :zipcode, "Billing Zip Code" %><br>
-    <%= f.text_field :zipcode %>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
     </div>
   </p>
-
-  <div class="field">
-    <%= f.hidden_field :order_id, :value => current_order.id %>
-  </div>
-
+  <p>
+    <div class="field">
+      <%= f.label :cc_number, "Credit Card Number" %><br>
+      <%= f.text_field :cc_number %>
+    </div>
   </p>
+  <p>
+    <div class="field">
+      <%= f.label 'Expiration Date' %><br>
+      <%= select_month nil, {add_month_numbers: true}, {name: 'purchase[expiration_month]'} %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: 'purchase[expiration_year]'} %>
+    </div>
+  </p>
+  <p>
+    <div class="field">
+      <%= f.label :cvv, "Security Code (CVV)" %><br>
+      <%= f.text_field :cvv %>
+    </div>
+  </p>
+  <p>
+    <div class="field">
+      <%= f.label :zipcode, "Billing Zip Code" %><br>
+      <%= f.text_field :zipcode %>
+    </div>
+  </p>
+  <p>
+    <div class="field">
+      <%= f.hidden_field :order_id, :value => current_order.id %>
+    </div>
+  </p>
+  <p>
   <div class="actions">
     <%= f.submit("Onward, to glory!") %>
   </div>

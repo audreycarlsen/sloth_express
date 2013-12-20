@@ -4,22 +4,22 @@
       <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
       <ul>
-      <% @category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <% end %>
+<% end %>
 
 <%= form_for(@category) do |f| %>
-
   <div class="field">
-    <%= f.label :name, "Category Name"%><br>
+    <%= f.label :name, "Category Name"%>
+    <br>
     <%= f.text_field :name %>
   </div>
 
-   <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <%end%>

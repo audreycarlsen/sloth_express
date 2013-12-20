@@ -9,7 +9,9 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </p>
-  <p class="button"><%= submit_tag "Log in" %></p>
+  <p class="button">
+    <%= submit_tag "Log in" %>
+  </p>
 <% end %>
 
 (New user? <%= link_to "Sign up", sign_up_path %>.)

@@ -50,8 +50,4 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:status, :user_id, :products => {})
   end
 
-  def subtotal
-  end
-
-
 end

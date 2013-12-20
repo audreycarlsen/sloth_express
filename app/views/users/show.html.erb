@@ -1,72 +1,79 @@
-<div><h1><%= @user.username %></h1></div>
+<div>
+  <h1><%= @user.username %></h1>
+</div>
+
 <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King") %>
-  <em><%= @user.email %></em><br><br>
+  <em><%= @user.email %></em>
+  <br><br>
   <%= link_to 'Edit My Account', edit_user_path %>
 <% end %>
 
 <table id="user_table">
-<tr>
-  <td id="my_products">
+  <tr>
+    <td id="my_products">
 
-    <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King")%>
-      <h2>My Products</h2>
-      <%= link_to 'Create New Product', new_product_path %><br>
-      <%= link_to 'Create New Category', new_category_path %>
-    <% else %>
-      <h2><%= @user.username %>'s Products</h2>
-    <% end %>
-    <br><br>
+      <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King")%>
+        <h2>My Products</h2>
+        <%= link_to 'Create New Product', new_product_path %><br>
+        <%= link_to 'Create New Category', new_category_path %>
+      <% else %>
+        <h2><%= @user.username %>'s Products</h2>
+      <% end %>
 
-    <% @user.products.each do |product| %>
-      <table>
-        <tr>
-        <td>
-          <div>
-            <% if product.photo == "" %>
-              <%= image_tag("sloth_default.png") %> 
-            <% else %>
-              <%= image_tag(product.photo, width: '150') %> 
-            <% end %>
-          </div> 
-        </td>
-        <td id='product_description'>
-          <div class="title">
-            <%= link_to product.name, product %>
-          </div>
-          <%= number_to_currency(product.price) %>
-          <br>
-          <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King") %>
-            <div id="edit_destroy">
-            [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
-          <% end %>
-          </div>
-        </td>
-      </tr>
-    </table>
-    <% end %>
-  </td>
-  <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King") %>
-  <td>
-    <h2>My Sales</h2>
-      <form action="/users/<%= current_user.id %>" method="get">
-        <select name="sales_filter">
-          <option value=1>Show All Orders</option>
-          <option value=2>Show Paid Orders</option>
-          <option value=3>Show Shipped Orders</option>
-          <option value=4>Cancelled Orders</option>
-        </select>
-        <input type="submit" value="Onward, to glory!">
-      </form>
-      <%= render 'sales' %>
-      <br>
-    </p>
+      <br><br>
+
+      <% @user.products.each do |product| %>
+        <table>
+          <tr>
+            <td>
+              <div>
+                <% if product.photo == "" %>
+                  <%= image_tag("sloth_default.png") %> 
+                <% else %>
+                  <%= image_tag(product.photo, width: '150') %> 
+                <% end %>
+              </div> 
+            </td>
+            <td id='product_description'>
+              <div class="title">
+                <%= link_to product.name, product %>
+              </div>
+
+              <%= number_to_currency(product.price) %>
+
+              <br>
+
+              <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King") %>
+                <div id="edit_destroy">
+                [<%= link_to 'Edit', edit_product_path(product) %>] [<%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]
+                </div>
+              <% end %> 
+            </td>
+          </tr>
+        </table>
+      <% end %>
     </td>
 
-  </tr>
+    <% if @user.id == session[:user_id] || (current_user && current_user.username == "Sloth King") %>
+      <td>
+        <h2>My Sales</h2>
+        <form action="/users/<%= current_user.id %>" method="get">
+          <select name="sales_filter">
+            <option value=1>Show All Orders</option>
+            <option value=2>Show Paid Orders</option>
+            <option value=3>Show Shipped Orders</option>
+            <option value=4>Cancelled Orders</option>
+          </select>
+          <input type="submit" value="Onward, to glory!">
+        </form>
+        <%= render 'sales' %>
+        <br>
+      </td>
+    </tr>
   </table>
+
   <div id="order_history">
     <h2> Order History </h2>
     <%= render 'history' %>
   </div>
-
-  <% end %>
+<% end %>

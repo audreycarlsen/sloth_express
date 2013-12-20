@@ -4,13 +4,14 @@
   <h1>Users</h1>
 
   <table>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.username, user %></td>
-      <td>[<%= link_to 'Edit', edit_user_path(user) %>]</td>
-      <td>[<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
-    </tr>
-  <% end %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td>[<%= link_to 'Edit', edit_user_path(user) %>]</td>
+        <td>[<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   You do not have permission to view this page.
 <% end %>

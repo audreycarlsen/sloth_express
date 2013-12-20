@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
-  has_many :order_items
-  has_many :products, through: :order_items
+  has_many   :order_items
+  has_many   :products, through: :order_items
   belongs_to :user
-  has_one :purchase
+  has_one    :purchase
 
   validate :order_items, presence: true
 
