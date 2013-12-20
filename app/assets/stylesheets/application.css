@@ -54,7 +54,8 @@ a:hover {
 /*Content*/
 #columns {
   background: LightGrey;
-  min-height: 900px;
+  min-height: 700px;
+  height: 100%;
 }
 
 #main {
