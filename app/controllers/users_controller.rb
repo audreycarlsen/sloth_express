@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @orders = Order.where(:user_id => @user.id)
+
     if current_user
       @sales_to_show = case params[:sales_filter].to_i
                        when 2
