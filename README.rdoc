@@ -7,4 +7,6 @@ All-powerful admin account:
   email: sloth@sloth.com
   password: 12345
 
+Admin can view/edit/destroy users, products, and categories, and can view any vendor's sales.
+
 Happy slothing!

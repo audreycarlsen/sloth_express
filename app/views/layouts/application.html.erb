@@ -23,7 +23,7 @@
         <%= link_to order_path(current_order.id) do %>
           <%= image_tag("cart.png") -%>
         <% end %>
-        <%= link_to "Cart", order_path(current_order.id) %>
+        <%= link_to "Cart", order_path(current_order.id) %> (<%= current_order.cart_size %>)
       <% else %>
         <%= link_to '/orders/empty' do %>
           <%= image_tag("cart.png") -%>

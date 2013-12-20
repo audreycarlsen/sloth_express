@@ -21,12 +21,4 @@ class ApplicationController < ActionController::Base
     @featured_product ||= legit_photos.sample
   end
 
-  def cart_size
-    order_item_array = OrderItem.all.select { |order_item| order_item.order_id == session[:order_id] }
-    order_item_array.each do |order_item|
-      size = 0
-      order_item.quantity
-      size += order_item.quantity
-    end
-  end
 end

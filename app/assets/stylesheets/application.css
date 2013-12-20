@@ -46,9 +46,9 @@ a:hover {
   position: absolute;
   top: 130px;
   right: 20px;
-  border: 1px dotted black;
   padding: 10px;
-  background-color: white;
+  border: 1px dotted #3b3b3b;
+  background: #e6e6e6;
 }
 
 /*Content*/
@@ -98,7 +98,7 @@ a:hover {
 
 #featured_product {
   border: 2px dotted #3b3b3b;
-  background: #fedcaf;
+  background: #ffd2b3;
   padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 12px;
