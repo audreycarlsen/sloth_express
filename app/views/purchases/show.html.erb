@@ -3,6 +3,7 @@
 Order status: <%= @purchase.order.status %> <br><br>
 
 <%= @purchase.created_at.strftime("Placed on %m/%d/%Y at %I:%M %p %Z.") %>
+
 <br><br>
 
 <table>
@@ -17,14 +18,15 @@ Order status: <%= @purchase.order.status %> <br><br>
 
   <tbody>
     <% @purchase.order.order_items.each do |order_item| %>
-    <tr>
-      <td><%= link_to "#{order_item.product.name}", product_path(order_item.product) %></td>
-      <td><%= order_item.quantity.to_i %></td>
-      <td><%= number_to_currency(order_item.subtotal) %>
-    </tr>
+      <tr>
+        <td><%= link_to "#{order_item.product.name}", product_path(order_item.product) %></td>
+        <td><%= order_item.quantity.to_i %></td>
+        <td><%= number_to_currency(order_item.subtotal) %></td>
+      </tr>
     <% end %> 
   </tbody>
 </table>
 
 <br>
+
 Total: <%= number_to_currency(@purchase.order.order_items.total) %>

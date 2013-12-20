@@ -1,5 +1,3 @@
-<% if @user.id == session[:user_id] %>
-<% end %>
 <h1>Order Details</h1>
 <h3>Buyer Information</h3>
 <h4>Shipping Address:</h4>     
@@ -9,6 +7,3 @@
 <h4>Payment</h4>
 xxxx-xxxx-xxxx-<%= @purchase.cc_number[12..16] %><br>
 Exp. <%= @purchase.expiration_month%>/<%= @purchase.expiration_year %>
- 
-
- 

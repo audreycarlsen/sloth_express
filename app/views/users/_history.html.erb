@@ -1,4 +1,5 @@
 <%orders = Order.where(:user_id => @user.id) %>
+
 <table>
   <thead>
     <tr>
@@ -12,20 +13,18 @@
   </thead>
 
   <tbody>
-    
-      <% orders.each do | order | %>
-        <% order.order_items.each do |sale| %>
-          <tr>
-            <td><%= order.id %></td>
-            <td><%= link_to "#{sale.product.name}", product_path(sale.product) %></td>
-            <td><%= sale.quantity %></td>
-            <td><%= number_to_currency(sale.product.price * sale.quantity) %></td>
-            
-            <td><%= Purchase.find_by(:order_id => order.id).created_at.to_formatted_s(:short) %></td>
-            <td><%= Purchase.find_by(:order_id => order.id).address %></td>
-          </tr>
-        <% end %>
-        
+    <% orders.each do | order | %>
+      <% order.order_items.each do |sale| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= link_to "#{sale.product.name}", product_path(sale.product) %></td>
+          <td><%= sale.quantity %></td>
+          <td><%= number_to_currency(sale.product.price * sale.quantity) %></td>
+          
+          <td><%= Purchase.find_by(:order_id => order.id).created_at.to_formatted_s(:short) %></td>
+          <td><%= Purchase.find_by(:order_id => order.id).address %></td>
+        </tr>
       <% end %>
+    <% end %>
   </tbody>
 </table>

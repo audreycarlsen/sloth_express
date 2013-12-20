@@ -1,7 +1,7 @@
 <h3>Shopping Cart:</h3>
- <table>
-    <thead>
-      <tr>
+<table>
+  <thead>
+    <tr>
       <th>Item</th>
       <th>Price</th>
       <th>Quantity</th>
@@ -11,23 +11,25 @@
   </thead>
 
   <tbody>
-
     <% @order.order_items.each do |order_item| %>
-    <tr>
+      <tr>
         <td><%= link_to "#{order_item.product.name}", product_path(order_item.product) %></td>
         <td><%= number_to_currency(order_item.product.price) %></td>
-        <td><%= form_for(order_item) do |f| %>
-          <%= f.text_field  :quantity, :value => order_item.quantity.to_i %>
-          <%= f.submit('Update qty') %>
+        <td>
+          <%= form_for(order_item) do |f| %>
+            <%= f.text_field  :quantity, :value => order_item.quantity.to_i %>
+            <%= f.submit('Update qty') %>
           <% end %>
         </td>
         <td><%= number_to_currency(order_item.subtotal) %></td>
         <td><%= button_to "remove", remove_item_path(current_order.id, order_item.product.id), method: :delete %></td>  
-    </tr>
+      </tr>
     <% end %> 
   </tbody>
- </table>
+</table>
+
 </br>
+
 Order Total: <%= number_to_currency(@order.order_items.total) %>
 
 <br><br>
