@@ -175,6 +175,21 @@ a:hover {
   display:inline-block;
 }
 
+#order_history td, th {
+  padding: 10px;
+}
+
+#order_history th {
+  background-color:#cccccc;
+  border-bottom: 2px solid grey;
+}
+
+#order_history table {
+  text-align:left;
+  font-size:14px;
+  color:#000000;
+}
+
 /*Product Show Page*/
 .box {
   width: 500px;
