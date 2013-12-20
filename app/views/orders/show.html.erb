@@ -5,28 +5,30 @@
       <th>Item</th>
       <th>Price</th>
       <th>Quantity</th>
+      <th>Subtotal</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @order.products.each do |product| %>
+
+    <% @order.order_items.each do |order_item| %>
     <tr>
-        <td><%= link_to "#{product.name}", product_path(product) %></td>
-        <td><%= number_to_currency(product.price) %></td>
-        <% @order_item = OrderItem.find_by(product_id: product.id, order_id: current_order.id) %>
-        <td><%= form_for(@order_item) do |f| %>
-          <%= f.text_field  :quantity, :value => @order_item.quantity.to_i %>
+        <td><%= link_to "#{order_item.product.name}", product_path(order_item.product) %></td>
+        <td><%= number_to_currency(order_item.product.price) %></td>
+        <td><%= form_for(order_item) do |f| %>
+          <%= f.text_field  :quantity, :value => order_item.quantity.to_i %>
           <%= f.submit('Update qty') %>
           <% end %>
-        <td><%= button_to "remove", remove_item_path(current_order.id, product.id), method: :delete %></td>  
-        <% @total += product.price * @order_item.quantity %>
+        </td>
+        <td><%= number_to_currency(order_item.subtotal) %></td>
+        <td><%= button_to "remove", remove_item_path(current_order.id, order_item.product.id), method: :delete %></td>  
     </tr>
     <% end %> 
   </tbody>
  </table>
 </br>
-Order Total: <%= number_to_currency(@total) %>
+Order Total: <%= number_to_currency(@order.order_items.total) %>
 
 <br><br>
 
