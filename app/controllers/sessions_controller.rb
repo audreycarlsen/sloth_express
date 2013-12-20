@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       assign_cart_to_user
-      remember_cart_if_empty
       unless current_user.username == "Sloth King"
         redirect_to products_path, :notice => "Welcome, Sloth Cadet #{user.username}! Your mission, should you choose to accept it, is to find the best in sloth themed products and values!"
       else
@@ -36,12 +35,6 @@ class SessionsController < ApplicationController
     if session[:order_id]
       current_order.user_id = session[:user_id]
       current_order.save
-    end
-  end
-
-  def remember_cart_if_empty
-    if old_order = Order.find_by(user_id: session[:user_id], status: "pending") && !session[:order_id]
-      session[:order_id] = old_order.id
     end
   end
 end
