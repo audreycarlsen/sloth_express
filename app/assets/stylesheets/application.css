@@ -192,11 +192,11 @@ a:hover {
 
 /*Product Show Page*/
 .box {
-  width: 500px;
+  width: 800px;
   vertical-align: top;
   padding-left: 10px;
   display: inline-block;
-  height: 220px;
+  height: 320px;
 }
 .image {
   padding: 30px 10px 5px 10px;
@@ -211,5 +211,5 @@ a:hover {
 }
 
 #description {
-  padding-top: 50px;
+  padding: 20px 0 20px 0;
 }
