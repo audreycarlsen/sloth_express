@@ -1,5 +1,6 @@
 class ManualSqlByKerriForTheLols < ActiveRecord::Migration
   def change
+    # This didn't wrk and its Kerri's fault
     # if Rails.env.producton?
     #   connection.execute(%q{
     #     alter table puchases
