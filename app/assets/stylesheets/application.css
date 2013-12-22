@@ -61,7 +61,7 @@ a:hover {
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
-  height:auto;
+  min-height:700px;
   overflow:hidden;
 }
 
