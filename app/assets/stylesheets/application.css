@@ -1,7 +1,5 @@
 body {
   font-family: Helvetica;
-  height:100%;
-  min-height: 900px;
 }
 
 ul li {
@@ -54,8 +52,8 @@ a:hover {
 /*Content*/
 #columns {
   background: LightGrey;
-  min-height: 700px;
-  height: 100%;
+  height:auto;
+  overflow:hidden;
 }
 
 #main {
@@ -63,7 +61,8 @@ a:hover {
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
-  min-height: 900px;
+  height:auto;
+  overflow:hidden;
 }
 
 #notice {
