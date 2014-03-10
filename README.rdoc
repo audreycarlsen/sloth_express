@@ -2,6 +2,8 @@ Hi there, and welcome to Sloth Express!
 
 SlothExpress is currently live on Heroku at: sloth-express.herokuapp.com
 
+Sloth express is the second rails app of Audrey Carlsen, Asha Golveo, Galina Yermicheva, and Elizabeth Uselton. It is a e-commerce site mock up complete with users who can create products, track their order history, add orders to their cart, check out, browse and search for items, and learn fun facts about sloths. You can view the desired specifications for the projects at: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/week07/resources/congo.md
+
 All-powerful admin account:
   username: Sloth King
   email: sloth@sloth.com
