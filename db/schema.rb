@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219223201) do
+ActiveRecord::Schema.define(version: 20131220235211) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20131219223201) do
     t.string   "name"
     t.text     "description"
     t.float    "price"
-    t.string   "photo",       default: "sloth_default.png"
+    t.string   "photo"
     t.integer  "user_id"
     t.integer  "stock"
     t.datetime "created_at"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20131219223201) do
   end
 
   create_table "purchases", force: true do |t|
-    t.string   "order_id"
+    t.integer  "order_id",         limit: 255
     t.string   "email"
     t.string   "address"
     t.string   "name"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20131219223201) do
     t.string   "zipcode"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "expiration_month"
     t.string   "expiration_year"
+    t.string   "expiration_month"
   end
 
   create_table "reviews", force: true do |t|
